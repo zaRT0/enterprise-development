@@ -1,7 +1,16 @@
 namespace AirlineTests;
 
+/// <summary>
+/// Contains unit tests for verifying various queries and operations on airline data.
+/// Uses the cref to provide consistent sample data for flights, passengers, and tickets.
+/// Each test checks a specific business rule or data aggregation relevant to airline management.
+/// </summary>
 public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixture>
 {
+    /// <summary>
+    /// Validates that the top five flights are correctly identified based on the number of passengers.
+    /// Ensures the result matches expected flight codes and counts in descending order of passenger count.
+    /// </summary>
     [Fact]
     public void TopFlightsByPassengerCount()
     {
@@ -38,6 +47,10 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
         }
     }
 
+    /// <summary>
+    /// Confirms that flights with the minimum duration are correctly retrieved.
+    /// Checks that the expected flight code is returned for the shortest flight duration.
+    /// </summary>
     [Fact]
     public void FlightsWithMinimalDuration()
     {
@@ -54,6 +67,10 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
         Assert.Equal(expected, queryCodes);
     }
 
+    /// <summary>
+    /// Tests retrieval of passengers with zero baggage weight for a specific flight.
+    /// Validates against expected passenger names to ensure accurate filtering by baggage information. 
+    /// </summary>
     [Fact]
     public void PassangersWithZeroBaggageWeight()
     {
@@ -74,6 +91,11 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
         Assert.Equal(expectedPassengers, queryPassengers);
     }
 
+    /// <summary>
+    /// Checks aggregated data about flights and passengers for a specific aircraft model within a given date range.
+    /// Verifies total flight count, passenger count, and total baggage weight match expected values.
+    /// 
+    /// </summary>
     [Fact]
     public void InformationAboutModelsFlightsPeriod()
     {
@@ -101,6 +123,10 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
         Assert.Equal(66.5f, totalBaggageWeight);
     }
 
+    /// <summary>
+    /// Validates filtering of flights by a specified departure and arrival point.
+    /// Ensures only flights matching the specified route are returned, matching expected flight codes. 
+    /// </summary>
     [Fact]
     public void FlightsFromDepartureToArrival()
     {

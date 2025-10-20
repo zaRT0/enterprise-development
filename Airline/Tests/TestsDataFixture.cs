@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Entities;
+﻿using Domain.Entities;
 
 namespace AirlineTests;
+
+/// <summary>
+/// Provides a comprehensive set of predefined data for airline domain entities to be used in unit tests.
+/// Contains collections of aircraft families, aircraft models, flights, passengers, and tickets.
+/// This fixture supplies consistent and realistic data scenarios for reliable and repeatable testing.
+/// </summary>
 public class TestsDataFixture
 {
+    /// <summary>
+    /// A list of aircraft families categorizing aircraft models by manufacturer and design lineage.
+    /// </summary>
     public List<AircraftFamily> Families =>
     [
         new()
@@ -72,6 +76,9 @@ public class TestsDataFixture
         }
     ];
 
+    /// <summary>
+    /// A list of specific aircraft models with detailed specifications including capacities and associated family.
+    /// </summary>
     public List<AircraftModel> Models =>
     [
         new()
@@ -166,6 +173,9 @@ public class TestsDataFixture
         }
     ];
 
+    /// <summary>
+    /// A list of scheduled flights, including identifiers, route information, timing, and assigned aircraft.
+    /// </summary>
     public List<Flight> Flights =>
     [
         new()
@@ -289,6 +299,9 @@ public class TestsDataFixture
         }
     ];
 
+    /// <summary>
+    /// A list representing airline passengers, including identifying details and birth dates.
+    /// </summary>
     public List<Passenger> Passengers =>
     [
         new()
@@ -453,6 +466,9 @@ public class TestsDataFixture
         }
     ];
 
+    /// <summary>
+    /// Records linking passengers to flights through tickets, including seating and baggage data.
+    /// </summary>
     public List<Ticket> Tickets =>
     [
         new() 

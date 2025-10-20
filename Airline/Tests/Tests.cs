@@ -61,7 +61,7 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
 
         var expectedPassengers = new[]
         {
-            "Петрова Мария Сергеевна",
+            "Петрова Мария Сергеевна", //изменение кодировки
             "Сидоров Алексей Владимирович"
         }.OrderBy(x => x).ToArray();
 

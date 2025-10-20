@@ -76,7 +76,7 @@ public class TestsDataFixture
     [
         new()
         {
-            Id = 0,
+            Id = 1,
             Name = "737-800",
             ModelFamily = Families[0],
             FlightRange = 5765,
@@ -360,97 +360,309 @@ public class TestsDataFixture
             PassportNumber = "8574-658974", 
             FullName = "Новикова Дарья Игоревна", 
             BirthDate = new DateOnly(1997, 2, 14) 
+        },
+        new() 
+        { 
+            Id = 11, 
+            PassportNumber = "1111-111111", 
+            FullName = "Абрамов Николай Петрович", 
+            BirthDate = new DateOnly(1983, 5, 10) 
+        },
+        new() 
+        { 
+            Id = 12, 
+            PassportNumber = "2222-222222", 
+            FullName = "Белова Вера Степановна", 
+            BirthDate = new DateOnly(1991, 12, 3) 
+        },
+        new() 
+        { 
+            Id = 13, 
+            PassportNumber = "3333-333333", 
+            FullName = "Григорьев Максим Игоревич", 
+            BirthDate = new DateOnly(1987, 8, 22) 
+        },
+        new() 
+        { 
+            Id = 14, 
+            PassportNumber = "4444-444444", 
+            FullName = "Дмитриева Софья Андреевна", 
+            BirthDate = new DateOnly(1999, 3, 17) 
+        },
+        new() 
+        { Id = 15, 
+            PassportNumber = "5555-555555", 
+            FullName = "Ефимов Роман Валерьевич", 
+            BirthDate = new DateOnly(1975, 11, 30) 
+        },
+        new() 
+        { 
+            Id = 16, 
+            PassportNumber = "6666-666666", 
+            FullName = "Жукова Полина Дмитриевна", 
+            BirthDate = new DateOnly(1994, 7, 8) 
+        },
+        new() 
+        { 
+            Id = 17, 
+            PassportNumber = "7777-777777", 
+            FullName = "Зайцев Илья Олегович", 
+            BirthDate = new DateOnly(1989, 1, 15) 
+        },
+        new() 
+        { 
+            Id = 18, 
+            PassportNumber = "8888-888888", 
+            FullName = "Иванова Ксения Сергеевна", 
+            BirthDate = new DateOnly(1996, 9, 25) 
+        },
+        new() 
+        { 
+            Id = 19, 
+            PassportNumber = "9999-999999", 
+            FullName = "Козлов Владислав Юрьевич", 
+            BirthDate = new DateOnly(1981, 4, 12) 
+        },
+        new() 
+        { 
+            Id = 20, 
+            PassportNumber = "0041-125874", 
+            FullName = "Ларионова Алина Викторовна", 
+            BirthDate = new DateOnly(1993, 6, 20) 
+        },
+        new() 
+        { 
+            Id = 21,
+            PassportNumber = "8547-123456", 
+            FullName = "Макаров Даниил Павлович", 
+            BirthDate = new DateOnly(1986, 10, 5) 
+        },
+        new() 
+        { 
+            Id = 22, 
+            PassportNumber = "3657-234567", 
+            FullName = "Нестерова Елизавета Михайловна", 
+            BirthDate = new DateOnly(1998, 2, 28) 
+        },
+        new()
+        {
+            Id = 23,
+            PassportNumber = "5241-658923",
+            FullName = "Преображенская Дарья Вячеславовна",
+            BirthDate = new DateOnly(1992, 5, 15)
         }
     ];
 
     public List<Ticket> Tickets =>
     [
-        new()
-        {
+        new() 
+        { 
             Id = 1, 
             Flight = Flights[0], 
             Passenger = Passengers[0], 
             SeatNumber = "12A", 
             IsHandLuggage = true, 
-            TotalBaggageWeight = 23.5f
+            TotalBaggageWeight = 23.5f 
         },
-        new()  
+        new() 
         { 
             Id = 2, 
-            Flight = Flights[1], 
+            Flight = Flights[0], 
             Passenger = Passengers[1], 
+            SeatNumber = "12B", 
+            IsHandLuggage = true, 
+            TotalBaggageWeight = null 
+        },
+        new() 
+        { 
+            Id = 3, 
+            Flight = Flights[0], 
+            Passenger = Passengers[2], 
+            SeatNumber = "12C", 
+            IsHandLuggage = false, 
+            TotalBaggageWeight = null 
+        },
+        new() 
+        { 
+            Id = 4, 
+            Flight = Flights[0], 
+            Passenger = Passengers[11], 
+            SeatNumber = "13A", 
+            IsHandLuggage = true, 
+            TotalBaggageWeight = 18.0f 
+        },
+        new() 
+        { 
+            Id = 5, 
+            Flight = Flights[0], 
+            Passenger = Passengers[12], 
+            SeatNumber = "13B", 
+            IsHandLuggage = false, 
+            TotalBaggageWeight = 25.0f 
+        },
+
+        new() 
+        { 
+            Id = 6, 
+            Flight = Flights[1], 
+            Passenger = Passengers[3], 
             SeatNumber = "15C", 
             IsHandLuggage = false, 
             TotalBaggageWeight = 30.0f 
         },
-        new()  
+        new() 
         { 
-            Id = 3, 
+            Id = 7, 
+            Flight = Flights[1], 
+            Passenger = Passengers[4], 
+            SeatNumber = "15D", 
+            IsHandLuggage = true, 
+            TotalBaggageWeight = null 
+        },
+        new() 
+        { 
+            Id = 8, 
+            Flight = Flights[1], 
+            Passenger = Passengers[13], 
+            SeatNumber = "16A", 
+            IsHandLuggage = false, 
+            TotalBaggageWeight = 22.5f 
+        },
+
+        new() 
+        { 
+            Id = 9, 
             Flight = Flights[2], 
-            Passenger = Passengers[2], 
+            Passenger = Passengers[5], 
             SeatNumber = "20F", 
             IsHandLuggage = true, 
             TotalBaggageWeight = null 
         },
-        new()  
+        new() 
         { 
-            Id = 4, 
+            Id = 10, 
+            Flight = Flights[2], 
+            Passenger = Passengers[6], 
+            SeatNumber = "21A", 
+            IsHandLuggage = false, 
+            TotalBaggageWeight = 32.7f 
+        },
+        new() 
+        { 
+            Id = 11, 
+            Flight = Flights[2], 
+            Passenger = Passengers[7], 
+            SeatNumber = "21B", 
+            IsHandLuggage = true, 
+            TotalBaggageWeight = 20.0f 
+        },
+        new() 
+        { 
+            Id = 12, 
+            Flight = Flights[2], 
+            Passenger = Passengers[8], 
+            SeatNumber = "21C", 
+            IsHandLuggage = false, 
+            TotalBaggageWeight = 28.5f 
+        },
+        new() 
+        { 
+            Id = 13, 
+            Flight = Flights[2], 
+            Passenger = Passengers[14], 
+            SeatNumber = "22A", 
+            IsHandLuggage = true, 
+            TotalBaggageWeight = null
+        },
+        new() 
+        {
+            Id = 14, 
+            Flight = Flights[2], 
+            Passenger = Passengers[15], 
+            SeatNumber = "22B", 
+            IsHandLuggage = false, 
+            TotalBaggageWeight = 19.8f 
+        },
+
+        new() 
+        { 
+            Id = 15, 
             Flight = Flights[3], 
-            Passenger = Passengers[3], 
+            Passenger = Passengers[9], 
             SeatNumber = "8D", 
             IsHandLuggage = true, 
             TotalBaggageWeight = 18.2f 
         },
-        new()  
+        new() 
         { 
-            Id = 5, 
+            Id = 16, 
+            Flight = Flights[3], 
+            Passenger = Passengers[16], 
+            SeatNumber = "8E", 
+            IsHandLuggage = false, 
+            TotalBaggageWeight = null 
+        },
+
+        new() 
+        { 
+            Id = 17,
             Flight = Flights[4], 
-            Passenger = Passengers[4], 
+            Passenger = Passengers[10], 
             SeatNumber = "10B", 
             IsHandLuggage = false, 
             TotalBaggageWeight = 25.0f 
         },
-        new()  
+        new() 
         { 
-            Id = 6, 
-            Flight = Flights[5], 
-            Passenger = Passengers[5], 
-            SeatNumber = "14E", 
-            IsHandLuggage = true,
+            Id = 18, 
+            Flight = Flights[4], 
+            Passenger = Passengers[17], 
+            SeatNumber = "10C", 
+            IsHandLuggage = true, 
             TotalBaggageWeight = null 
         },
-        new()  
+
+        new() 
         { 
-            Id = 7, 
+            Id = 19, 
+            Flight = Flights[5], 
+            Passenger = Passengers[18], 
+            SeatNumber = "14E", 
+            IsHandLuggage = true, 
+            TotalBaggageWeight = null 
+        },
+        new() 
+        { 
+            Id = 20, 
             Flight = Flights[6], 
-            Passenger = Passengers[6], 
+            Passenger = Passengers[19], 
             SeatNumber = "5A", 
             IsHandLuggage = false, 
             TotalBaggageWeight = 32.7f 
         },
-        new()  
+        new() 
         { 
-            Id = 8, 
+            Id = 21, 
             Flight = Flights[7], 
-            Passenger = Passengers[7], 
+            Passenger = Passengers[20], 
             SeatNumber = "18C", 
             IsHandLuggage = true, 
             TotalBaggageWeight = 20.0f 
         },
-        new()  
+        new() 
         { 
-            Id = 9, 
-            Flight = Flights[8], 
-            Passenger = Passengers[8], 
+            Id = 22, 
+            Flight = Flights[8],
+            Passenger = Passengers[21], 
             SeatNumber = "7F", 
             IsHandLuggage = false, 
             TotalBaggageWeight = 28.5f 
         },
-        new()  
+        new() 
         { 
-            Id = 10, 
+            Id = 23, 
             Flight = Flights[9], 
-            Passenger = Passengers[9], 
+            Passenger = Passengers[22], 
             SeatNumber = "11D", 
             IsHandLuggage = true, 
             TotalBaggageWeight = null 

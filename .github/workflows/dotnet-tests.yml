@@ -13,16 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup .NET
+      - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
       - name: Restore dependencies
-        run: dotnet restore ./Airline/Airline.sln
+        run: dotnet restore Airline/Airline.sln
 
       - name: Build
-        run: dotnet build ./Airline/Airline.sln --no-restore --configuration Release
+        run: dotnet build Airline/Airline.sln --no-restore --configuration Release
 
       - name: Test
-        run: dotnet test ./Airline/Tests/AirlineTests.csproj --configuration Release --verbosity normal
+        run: dotnet test Airline/Tests/AirlineTests.csproj --configuration Release --verbosity normal

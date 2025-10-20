@@ -61,8 +61,8 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
 
         var expectedPassengers = new[]
         {
-            "Петрова Мария Сергеевна", //изменение кодировки
-            "Сидоров Алексей Владимирович"
+            "Petrova Maria Sergeevna",
+            "Sidorov Alexey Vladimirovich"
         }.OrderBy(x => x).ToArray();
 
         var queryPassengers = fixture.Tickets
@@ -107,7 +107,7 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
         var expectedCodes = new[] { "SU1234" };
 
         var queryCodes = fixture.Flights
-            .Where(f => f.DeparturePoint == "Москва (SVO)" && f.ArrivalPoint == "Сочи (AER)")
+            .Where(f => f.DeparturePoint == "Moscow (SVO)" && f.ArrivalPoint == "Sochi (AER)")
             .OrderBy(f => f.Code)
             .Select(f => f.Code)
             .ToArray();

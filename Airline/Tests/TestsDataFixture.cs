@@ -172,8 +172,8 @@ public class TestsDataFixture
         {
             Id = 1,
             Code = "SU1234", 
-            DeparturePoint = "Москва (SVO)", 
-            ArrivalPoint = "Сочи (AER)", 
+            DeparturePoint = "Moscow (SVO)", 
+            ArrivalPoint = "Sochi (AER)", 
             DepartureDate = new (2025, 10, 20), 
             ArrivalDate = new (2025, 10, 20), 
             DepartureTime = new TimeOnly(10, 30), 
@@ -184,8 +184,8 @@ public class TestsDataFixture
         { 
             Id = 2, 
             Code = "A4567", 
-            DeparturePoint = "Санкт-Петербург (LED)", 
-            ArrivalPoint = "Екатеринбург (SVX)", 
+            DeparturePoint = "Saint Petersburg (LED)", 
+            ArrivalPoint = "Yekaterinburg (SVX)", 
             DepartureDate = new DateOnly(2025, 10, 21), 
             ArrivalDate = new DateOnly(2025, 10, 21), 
             DepartureTime = new TimeOnly(14, 15), 
@@ -196,8 +196,8 @@ public class TestsDataFixture
         { 
             Id = 3, 
             Code = "U6789", 
-            DeparturePoint = "Новосибирск (OVB)", 
-            ArrivalPoint = "Владивосток (VVO)", 
+            DeparturePoint = "Novosibirsk (OVB)", 
+            ArrivalPoint = "Vladivostok (VVO)", 
             DepartureDate = new DateOnly(2025, 10, 22), 
             ArrivalDate = new DateOnly(2025, 10, 22), 
             DepartureTime = new TimeOnly(8, 0), 
@@ -208,8 +208,8 @@ public class TestsDataFixture
         { 
             Id = 4, 
             Code = "DP2468", 
-            DeparturePoint = "Казань (KZN)", 
-            ArrivalPoint = "Минеральные Воды (MRV)", 
+            DeparturePoint = "Kazan (KZN)", 
+            ArrivalPoint = "Mineralnye Vody (MRV)", 
             DepartureDate = new DateOnly(2025, 10, 23), 
             ArrivalDate = new DateOnly(2025, 10, 23), 
             DepartureTime = new TimeOnly(16, 45), 
@@ -219,8 +219,8 @@ public class TestsDataFixture
         { 
             Id = 5, 
             Code = "Y7890", 
-            DeparturePoint = "Ростов-на-Дону (ROV)", 
-            ArrivalPoint = "Калининград (KGD)", 
+            DeparturePoint = "Rostov-on-Don (ROV)", 
+            ArrivalPoint = "Kaliningrad (KGD)", 
             DepartureDate = new DateOnly(2025, 10, 24), 
             ArrivalDate = new DateOnly(2025, 10, 24), 
             DepartureTime = new TimeOnly(12, 20), 
@@ -231,8 +231,8 @@ public class TestsDataFixture
         { 
             Id = 6, 
             Code = "S7111", 
-            DeparturePoint = "Москва (DME)", 
-            ArrivalPoint = "Омск (OMS)", 
+            DeparturePoint = "Moscow (DME)", 
+            ArrivalPoint = "Omsk (OMS)", 
             DepartureDate = new DateOnly(2025, 10, 25), 
             ArrivalDate = new DateOnly(2025, 10, 25), 
             DepartureTime = new TimeOnly(9, 10), 
@@ -243,8 +243,8 @@ public class TestsDataFixture
         { 
             Id = 7, 
             Code = "R2222", 
-            DeparturePoint = "Уфа (UFA)", 
-            ArrivalPoint = "Симферополь (SIP)", 
+            DeparturePoint = "Ufa (UFA)", 
+            ArrivalPoint = "Simferopol (SIP)", 
             DepartureDate = new DateOnly(2025, 10, 26), 
             ArrivalDate = new DateOnly(2025, 10, 26), 
             DepartureTime = new TimeOnly(11, 0), 
@@ -255,8 +255,8 @@ public class TestsDataFixture
         { 
             Id = 8, 
             Code = "T3333", 
-            DeparturePoint = "Самара (KUF)", 
-            ArrivalPoint = "Мурманск (MMK)", 
+            DeparturePoint = "Samara (KUF)", 
+            ArrivalPoint = "Murmansk (MMK)", 
             DepartureDate = new DateOnly(2025, 10, 27), 
             ArrivalDate = new DateOnly(2025, 10, 27), 
             DepartureTime = new TimeOnly(7, 30), 
@@ -267,8 +267,8 @@ public class TestsDataFixture
         { 
             Id = 9,
             Code = "G4444", 
-            DeparturePoint = "Красноярск (KJA)", 
-            ArrivalPoint = "Южно-Сахалинск (UUS)", 
+            DeparturePoint = "Krasnoyarsk (KJA)", 
+            ArrivalPoint = "Yuzhno-Sakhalinsk (UUS)", 
             DepartureDate = new DateOnly(2025, 10, 28), 
             ArrivalDate = new DateOnly(2025, 10, 28), 
             DepartureTime = new TimeOnly(13, 45), 
@@ -279,8 +279,8 @@ public class TestsDataFixture
         {
             Id = 10, 
             Code = "Z5555", 
-            DeparturePoint = "Иркутск (IKT)", 
-            ArrivalPoint = "Хабаровск (KHV)", 
+            DeparturePoint = "Irkutsk (IKT)", 
+            ArrivalPoint = " Khabarovsk (KHV)", 
             DepartureDate = new DateOnly(2025, 10, 29), 
             ArrivalDate = new DateOnly(2025, 10, 29), 
             DepartureTime = new TimeOnly(15, 20), 
@@ -295,160 +295,160 @@ public class TestsDataFixture
         {
             Id = 1, 
             PassportNumber = "4244-123456", 
-            FullName = "Иванов Иван Иванович", 
+            FullName = "Ivanov Ivan Ivanovic", 
             BirthDate = new DateOnly(1985, 3, 12)
         },
         new()  
         { 
             Id = 2, 
             PassportNumber = "4244-234567", 
-            FullName = "Петрова Мария Сергеевна", 
+            FullName = "Petrova Maria Sergeevna", 
             BirthDate = new DateOnly(1990, 7, 22) 
         },
         new()  
         {
             Id = 3, 
             PassportNumber = "4244-345678", 
-            FullName = "Сидоров Алексей Владимирович", 
+            FullName = "Sidorov Alexey Vladimirovich", 
             BirthDate = new DateOnly(1978, 11, 5) 
         },
         new()  
         {
             Id = 4, 
             PassportNumber = "4244-456789", 
-            FullName = "Кузнецова Анна Олеговна", 
+            FullName = "Kuznetsova Anna Olegovna", 
             BirthDate = new DateOnly(2000, 1, 30) 
         },
         new()  
         { 
             Id = 5, 
             PassportNumber = "4202-567890", 
-            FullName = "Смирнов Дмитрий Андреевич", 
+            FullName = "Smirnov Dmitry Andreevich", 
             BirthDate = new DateOnly(1982, 9, 14) 
         },
         new()  
         { 
             Id = 6, 
             PassportNumber = "4201-678901", 
-            FullName = "Попова Екатерина Николаевна", 
+            FullName = "Popova Ekaterina Nikolaevna", 
             BirthDate = new DateOnly(1995, 4, 18) 
         },
         new()  
         { 
             Id = 7, 
             PassportNumber = "4568-789012", 
-            FullName = "Волков Сергей Павлович", 
+            FullName = "Volkov Sergey Pavlovich", 
             BirthDate = new DateOnly(1970, 12, 25) 
         },
         new()  
         { 
             Id = 8, 
             PassportNumber = "4857-890123", 
-            FullName = "Морозова Ольга Викторовна", 
+            FullName = "Morozova Olga Viktorovna", 
             BirthDate = new DateOnly(1988, 6, 9) 
         },
         new()  
         { 
             Id = 9,
             PassportNumber = "3618-524872", 
-            FullName = "Лебедев Артём Юрьевич", 
+            FullName = "Lebedev Artyom Yuryevich", 
             BirthDate = new DateOnly(1992, 8, 3) 
         },
         new()  
         { 
             Id = 10, 
             PassportNumber = "8574-658974", 
-            FullName = "Новикова Дарья Игоревна", 
+            FullName = "Novikova Daria Igorevna", 
             BirthDate = new DateOnly(1997, 2, 14) 
         },
         new() 
         { 
             Id = 11, 
             PassportNumber = "1111-111111", 
-            FullName = "Абрамов Николай Петрович", 
+            FullName = "Abramov Nikolay Petrovich", 
             BirthDate = new DateOnly(1983, 5, 10) 
         },
         new() 
         { 
             Id = 12, 
             PassportNumber = "2222-222222", 
-            FullName = "Белова Вера Степановна", 
+            FullName = "Belova Vera Stepanovna", 
             BirthDate = new DateOnly(1991, 12, 3) 
         },
         new() 
         { 
             Id = 13, 
             PassportNumber = "3333-333333", 
-            FullName = "Григорьев Максим Игоревич", 
+            FullName = "Grigoryev Maxim Igorevich", 
             BirthDate = new DateOnly(1987, 8, 22) 
         },
         new() 
         { 
             Id = 14, 
             PassportNumber = "4444-444444", 
-            FullName = "Дмитриева Софья Андреевна", 
+            FullName = "Dmitrieva Sofya Andreevna", 
             BirthDate = new DateOnly(1999, 3, 17) 
         },
         new() 
         { Id = 15, 
             PassportNumber = "5555-555555", 
-            FullName = "Ефимов Роман Валерьевич", 
+            FullName = "Efimov Roman Valeryevich", 
             BirthDate = new DateOnly(1975, 11, 30) 
         },
         new() 
         { 
             Id = 16, 
             PassportNumber = "6666-666666", 
-            FullName = "Жукова Полина Дмитриевна", 
+            FullName = "Zhukova Polina Dmitrievna", 
             BirthDate = new DateOnly(1994, 7, 8) 
         },
         new() 
         { 
             Id = 17, 
             PassportNumber = "7777-777777", 
-            FullName = "Зайцев Илья Олегович", 
+            FullName = "Zaitsev Ilya Olegovich", 
             BirthDate = new DateOnly(1989, 1, 15) 
         },
         new() 
         { 
             Id = 18, 
             PassportNumber = "8888-888888", 
-            FullName = "Иванова Ксения Сергеевна", 
+            FullName = "Ivanova Kseniya Sergeevna", 
             BirthDate = new DateOnly(1996, 9, 25) 
         },
         new() 
         { 
             Id = 19, 
             PassportNumber = "9999-999999", 
-            FullName = "Козлов Владислав Юрьевич", 
+            FullName = "Kozlov Vladislav Yuryevich", 
             BirthDate = new DateOnly(1981, 4, 12) 
         },
         new() 
         { 
             Id = 20, 
             PassportNumber = "0041-125874", 
-            FullName = "Ларионова Алина Викторовна", 
+            FullName = "Larionova Alina Viktorovna", 
             BirthDate = new DateOnly(1993, 6, 20) 
         },
         new() 
         { 
             Id = 21,
             PassportNumber = "8547-123456", 
-            FullName = "Макаров Даниил Павлович", 
+            FullName = "Makarov Daniil Pavlovich", 
             BirthDate = new DateOnly(1986, 10, 5) 
         },
         new() 
         { 
             Id = 22, 
             PassportNumber = "3657-234567", 
-            FullName = "Нестерова Елизавета Михайловна", 
+            FullName = "Nesterova Elizaveta Mikhailovna", 
             BirthDate = new DateOnly(1998, 2, 28) 
         },
         new()
         {
             Id = 23,
             PassportNumber = "5241-658923",
-            FullName = "Преображенская Дарья Вячеславовна",
+            FullName = "Preobrazhenskaya Daria Vyacheslavovna",
             BirthDate = new DateOnly(1992, 5, 15)
         }
     ];

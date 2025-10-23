@@ -92,7 +92,7 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
 
     /// <summary>
     /// Checks aggregated data about flights and passengers for a specific aircraft model within a given date range.
-    /// Verifies total flight count, passenger count, and total baggage weight match expected values.
+    /// Verifies one object, includes total flight count, passenger count and massive of flights codes
     /// </summary>
     [Fact]
     public void InformationAboutModelsFlightsPeriod()

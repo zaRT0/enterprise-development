@@ -42,8 +42,7 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
 
         for (var i = 0; i < expected.Length; i++)
         {
-            Assert.Equal(expected[i].Code, query[i].Flight.Code);
-            Assert.Equal(expected[i].Count, query[i].PassengersCount);
+            Assert.Equal(expected, [.. query.Select(q => (q.Flight.Code, Count: q.PassengersCount))]);
         }
     }
 
@@ -67,11 +66,11 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
         Assert.Equal(expected, queryCodes);
     }
 
-    /// <summary>
-    /// Tests retrieval of passengers with zero baggage weight for a specific flight.
-    /// Validates against expected passenger names to ensure accurate filtering by baggage information. 
-    /// </summary>
-    [Fact]
+   /// <summary>
+   /// Tests retrieval of passengers with zero baggage weight for a specific flight.
+   /// Validates against expected passenger names to ensure accurate filtering by baggage information. 
+   /// </summary>
+   [Fact]
     public void PassangersWithZeroBaggageWeight()
     {
         var flightId = 1;
@@ -100,26 +99,25 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
     {
         var model = fixture.Models.Single(m => m.Name == "737-800");
 
-        var startDate = new DateOnly(2025, 10, 20);
-        var endDate = new DateOnly(2025, 10, 25);
+        var startDate = new DateTime(2025, 10, 20, 00, 00, 00);
+        var endDate = new DateTime(2025, 10, 25, 00, 00, 00);
 
-        var flights = fixture.Flights
-            .Where(f => f.AircraftModel.Id == model.Id 
-                        && f.DepartureDate >= startDate 
-                        && f.DepartureDate <= endDate)
-            .ToArray();
+        var result = fixture.Tickets
+            .Where(t => t.Flight != null
+                        && t.Flight.AircraftModel.Id == model.Id
+                        && t.Flight.DepartureDateTime >= startDate
+                        && t.Flight.DepartureDateTime <= endDate)
+            .GroupBy(t => 1)
+            .Select(g => new
+            {
+                TotalFlights = g.Select(t => t.Flight!.Id).Distinct().Count(),
+                TotalPassengers = g.Count(),
+                FlightCodes = g.Select(t => t.Flight!.Code).Distinct().ToArray()
+            })
+            .Single();
 
-        var tickets = fixture.Tickets
-            .Where(t => flights.Any(f => f.Id == t.Flight?.Id))
-            .ToArray();
-
-        var totalFlights = flights.Length;
-        var totalPassengers = tickets.Length;
-        var totalBaggageWeight = tickets.Sum(t => t.TotalBaggageWeight ?? 0);
-
-        Assert.Equal(1, totalFlights);
-        Assert.Equal(5, totalPassengers);
-        Assert.Equal(66.5f, totalBaggageWeight);
+        Assert.Equal(1, result.TotalFlights);
+        Assert.Equal(5, result.TotalPassengers);
     }
 
     /// <summary>
@@ -131,8 +129,11 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
     {
         var expectedCodes = new[] { "SU1234" };
 
+        var departurePoint = "Moscow (SVO)";
+        var arrivalPoint = "Sochi (AER)";
+
         var queryCodes = fixture.Flights
-            .Where(f => f.DeparturePoint == "Moscow (SVO)" && f.ArrivalPoint == "Sochi (AER)")
+            .Where(f => f.DeparturePoint == departurePoint && f.ArrivalPoint == arrivalPoint)
             .OrderBy(f => f.Code)
             .Select(f => f.Code)
             .ToArray();

@@ -184,10 +184,8 @@ public class TestsDataFixture
             Code = "SU1234",
             DeparturePoint = "Moscow (SVO)",
             ArrivalPoint = "Sochi (AER)",
-            DepartureDate = new (2025, 10, 20),
-            ArrivalDate = new (2025, 10, 20),
-            DepartureTime = new TimeOnly(10, 30),
-            Duration = TimeSpan.FromHours(2.5),
+            DepartureDateTime = new (2025, 10, 20, 10, 30, 00),
+            ArrivalDateTime = new (2025, 10, 20, 13, 00, 00),
             AircraftModel = Models[0]
         },
         new()
@@ -196,10 +194,8 @@ public class TestsDataFixture
             Code = "A4567",
             DeparturePoint = "Saint Petersburg (LED)",
             ArrivalPoint = "Yekaterinburg (SVX)",
-            DepartureDate = new DateOnly(2025, 10, 21),
-            ArrivalDate = new DateOnly(2025, 10, 21),
-            DepartureTime = new TimeOnly(14, 15),
-            Duration = TimeSpan.FromHours(2.75),
+            DepartureDateTime = new (2025, 10, 21, 14, 15, 00),
+            ArrivalDateTime = new (2025, 10, 21, 17, 00, 00),
             AircraftModel = Models[1]
         },
         new()
@@ -208,10 +204,8 @@ public class TestsDataFixture
             Code = "U6789",
             DeparturePoint = "Novosibirsk (OVB)",
             ArrivalPoint = "Vladivostok (VVO)",
-            DepartureDate = new DateOnly(2025, 10, 22),
-            ArrivalDate = new DateOnly(2025, 10, 22),
-            DepartureTime = new TimeOnly(8, 0),
-            Duration = TimeSpan.FromHours(6.5),
+            DepartureDateTime = new (2025, 10, 22, 08, 00, 00),
+            ArrivalDateTime = new (2025, 10, 22, 14, 30, 00),
             AircraftModel = Models[2]
         },
         new()
@@ -220,10 +214,8 @@ public class TestsDataFixture
             Code = "DP2468",
             DeparturePoint = "Kazan (KZN)",
             ArrivalPoint = "Mineralnye Vody (MRV)",
-            DepartureDate = new DateOnly(2025, 10, 23),
-            ArrivalDate = new DateOnly(2025, 10, 23),
-            DepartureTime = new TimeOnly(16, 45),
-            Duration = TimeSpan.FromHours(2.25),
+            DepartureDateTime = new (2025, 10, 23, 16, 45, 00),
+            ArrivalDateTime = new (2025, 10, 23, 19, 10, 00),
             AircraftModel = Models[3] },
         new()
         {
@@ -231,10 +223,8 @@ public class TestsDataFixture
             Code = "Y7890",
             DeparturePoint = "Rostov-on-Don (ROV)",
             ArrivalPoint = "Kaliningrad (KGD)",
-            DepartureDate = new DateOnly(2025, 10, 24),
-            ArrivalDate = new DateOnly(2025, 10, 24),
-            DepartureTime = new TimeOnly(12, 20),
-            Duration = TimeSpan.FromHours(2.0),
+            DepartureDateTime = new (2025, 10, 24, 12, 20, 00),
+            ArrivalDateTime = new (2025, 10, 24, 14, 20, 00),
             AircraftModel = Models[4]
         },
         new()
@@ -243,10 +233,8 @@ public class TestsDataFixture
             Code = "S7111",
             DeparturePoint = "Moscow (DME)",
             ArrivalPoint = "Omsk (OMS)",
-            DepartureDate = new DateOnly(2025, 10, 25),
-            ArrivalDate = new DateOnly(2025, 10, 25),
-            DepartureTime = new TimeOnly(9, 10),
-            Duration = TimeSpan.FromHours(3.5),
+            DepartureDateTime = new (2025, 10, 25, 09, 10, 00),
+            ArrivalDateTime = new (2025, 10, 25, 12, 40, 00),
             AircraftModel = Models[5]
         },
         new()
@@ -255,10 +243,8 @@ public class TestsDataFixture
             Code = "R2222",
             DeparturePoint = "Ufa (UFA)",
             ArrivalPoint = "Simferopol (SIP)",
-            DepartureDate = new DateOnly(2025, 10, 26),
-            ArrivalDate = new DateOnly(2025, 10, 26),
-            DepartureTime = new TimeOnly(11, 0),
-            Duration = TimeSpan.FromHours(3.0),
+            DepartureDateTime = new (2025, 10, 26, 11, 00, 00),
+            ArrivalDateTime = new (2025, 10, 26, 14, 00, 00),
             AircraftModel = Models[6]
         },
         new()
@@ -267,10 +253,8 @@ public class TestsDataFixture
             Code = "T3333",
             DeparturePoint = "Samara (KUF)",
             ArrivalPoint = "Murmansk (MMK)",
-            DepartureDate = new DateOnly(2025, 10, 27),
-            ArrivalDate = new DateOnly(2025, 10, 27),
-            DepartureTime = new TimeOnly(7, 30),
-            Duration = TimeSpan.FromHours(3.25),
+            DepartureDateTime = new (2025, 10, 27, 07, 30, 00),
+            ArrivalDateTime = new (2025, 10, 27, 10, 55, 00),
             AircraftModel = Models[7]
         },
         new()
@@ -279,10 +263,8 @@ public class TestsDataFixture
             Code = "G4444",
             DeparturePoint = "Krasnoyarsk (KJA)",
             ArrivalPoint = "Yuzhno-Sakhalinsk (UUS)",
-            DepartureDate = new DateOnly(2025, 10, 28),
-            ArrivalDate = new DateOnly(2025, 10, 28),
-            DepartureTime = new TimeOnly(13, 45),
-            Duration = TimeSpan.FromHours(6.0),
+            DepartureDateTime = new (2025, 10, 28, 13, 45, 00),
+            ArrivalDateTime = new (2025, 10, 28, 19, 45, 00),
             AircraftModel = Models[8]
         },
         new()
@@ -291,10 +273,8 @@ public class TestsDataFixture
             Code = "Z5555",
             DeparturePoint = "Irkutsk (IKT)",
             ArrivalPoint = " Khabarovsk (KHV)",
-            DepartureDate = new DateOnly(2025, 10, 29),
-            ArrivalDate = new DateOnly(2025, 10, 29),
-            DepartureTime = new TimeOnly(15, 20),
-            Duration = TimeSpan.FromHours(4.5),
+            DepartureDateTime = new (2025, 10, 29, 15, 20, 00),
+            ArrivalDateTime = new (2025, 10, 29, 19, 50, 00),
             AircraftModel = Models[9]
         }
     ];

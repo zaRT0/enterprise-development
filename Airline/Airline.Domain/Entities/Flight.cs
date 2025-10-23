@@ -27,24 +27,19 @@ public class Flight
     public required string ArrivalPoint { get; set; }
 
     /// <summary>
-    /// Date of departure.
+    /// Date and time of departure.
     /// </summary>
-    public required DateOnly DepartureDate { get; set; }
+    public required DateTime DepartureDateTime { get; set; }
 
     /// <summary>
-    /// Date of arrival.
+    /// Date and time of arrival.
     /// </summary>
-    public required DateOnly ArrivalDate { get; set; }
-
-    /// <summary>
-    /// Time of departure relative to the departure date.
-    /// </summary>
-    public required TimeOnly DepartureTime { get; set; }
+    public required DateTime ArrivalDateTime { get; set; }
 
     /// <summary>
     /// Duration of the flight as a time span.
     /// </summary>
-    public required TimeSpan Duration { get; set; }
+    public TimeSpan Duration => ArrivalDateTime - DepartureDateTime;
 
     /// <summary>
     /// Aircraft model used for this flight.

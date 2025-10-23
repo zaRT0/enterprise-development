@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities;
+﻿namespace Airline.Domain.Entities;
 
 /// <summary>
 /// /// Represents a ticket issued to a passenger for a specific flight.

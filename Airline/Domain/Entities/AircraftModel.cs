@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities;
+﻿namespace Airline.Domain.Entities;
 
 /// <summary>
 /// Describes an individual aircraft model including its specifications and associated family.

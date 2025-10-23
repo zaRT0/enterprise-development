@@ -1,4 +1,4 @@
-namespace AirlineTests;
+namespace Airline.Tests;
 
 /// <summary>
 /// Contains unit tests for verifying various queries and operations on airline data.
@@ -80,12 +80,12 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
         {
             "Petrova Maria Sergeevna",
             "Sidorov Alexey Vladimirovich"
-        }.OrderBy(x => x).ToArray();
+        }.ToArray();
 
         var queryPassengers = fixture.Tickets
             .Where(t => t.Flight.Id == flightId && t.TotalBaggageWeight == null)
             .Select(t => t.Passenger.FullName)
-            .OrderBy(name => name)
+            .Order()
             .ToArray();
 
         Assert.Equal(expectedPassengers, queryPassengers);
@@ -94,7 +94,6 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
     /// <summary>
     /// Checks aggregated data about flights and passengers for a specific aircraft model within a given date range.
     /// Verifies total flight count, passenger count, and total baggage weight match expected values.
-    /// 
     /// </summary>
     [Fact]
     public void InformationAboutModelsFlightsPeriod()

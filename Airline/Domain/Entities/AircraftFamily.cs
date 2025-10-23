@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities;
+﻿namespace Airline.Domain.Entities;
 
 /// <summary>
 /// Represents a family of aircraft models.
@@ -19,5 +19,5 @@ public class AircraftFamily
     /// <summary>
     /// The name of the manufacturer producing this family of aircraft.
     /// </summary>
-    public required string ManufacturerName { get; set; }   
+    public required string ManufacturerName { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities;
+﻿namespace Airline.Domain.Entities;
 /// <summary>
 /// Describes a passenger with personal and identification data.
 /// Contains unique ID, passport number, full legal name, and birth date.

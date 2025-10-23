@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities;
+﻿namespace Airline.Domain.Entities;
 
 /// <summary>
 /// Represents a flight entity with scheduling, routing, and aircraft assignment information.

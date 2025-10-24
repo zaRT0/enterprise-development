@@ -38,12 +38,7 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
             .Take(5)
             .ToArray();
 
-        Assert.Equal(expected.Length, query.Length);
-
-        for (var i = 0; i < expected.Length; i++)
-        {
             Assert.Equal(expected, [.. query.Select(q => (q.Flight.Code, Count: q.PassengersCount))]);
-        }
     }
 
     /// <summary>
@@ -79,7 +74,7 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
         {
             "Petrova Maria Sergeevna",
             "Sidorov Alexey Vladimirovich"
-        }.ToArray();
+        };
 
         var queryPassengers = fixture.Tickets
             .Where(t => t.Flight.Id == flightId && t.TotalBaggageWeight == null)
@@ -102,19 +97,19 @@ public class AirlineTests(TestsDataFixture fixture): IClassFixture<TestsDataFixt
         var startDate = new DateTime(2025, 10, 20, 00, 00, 00);
         var endDate = new DateTime(2025, 10, 25, 00, 00, 00);
 
-        var result = fixture.Tickets
+        var filteredTickets = fixture.Tickets
             .Where(t => t.Flight != null
                         && t.Flight.AircraftModel.Id == model.Id
                         && t.Flight.DepartureDateTime >= startDate
                         && t.Flight.DepartureDateTime <= endDate)
-            .GroupBy(t => 1)
-            .Select(g => new
-            {
-                TotalFlights = g.Select(t => t.Flight!.Id).Distinct().Count(),
-                TotalPassengers = g.Count(),
-                FlightCodes = g.Select(t => t.Flight!.Code).Distinct().ToArray()
-            })
-            .Single();
+            .ToList();
+
+        var result = new
+        {
+            TotalFlights = filteredTickets.Select(t => t.Flight.Id).Distinct().Count(),
+            TotalPassengers = filteredTickets.Count,
+            FlightCodes = filteredTickets.Select(t => t.Flight.Code).Distinct().ToArray()
+        };
 
         Assert.Equal(1, result.TotalFlights);
         Assert.Equal(5, result.TotalPassengers);

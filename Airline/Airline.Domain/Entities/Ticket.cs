@@ -1,7 +1,7 @@
 ﻿namespace Airline.Domain.Entities;
 
 /// <summary>
-/// /// Represents a ticket issued to a passenger for a specific flight.
+/// Represents a ticket issued to a passenger for a specific flight.
 /// Contains ticket ID, linked flight and passenger, seat, hand luggage flag, baggage weight.
 /// </summary>
 public class Ticket

@@ -24,4 +24,5 @@ public class Passenger
     /// Passenger's date of birth.
     /// </summary>
     public required DateOnly BirthDate { get; set; }
+
 }

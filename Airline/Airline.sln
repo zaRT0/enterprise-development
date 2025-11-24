@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline.Domain", "Airline.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline.Tests", "Airline.Tests\Airline.Tests.csproj", "{14A78519-7256-4F0B-9328-E19A13E406E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline.Infrastructure", "Airline.Infrastructure\Airline.Infrastructure.csproj", "{419509E9-538D-45AB-ABC7-FFF6B27C1B9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{14A78519-7256-4F0B-9328-E19A13E406E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14A78519-7256-4F0B-9328-E19A13E406E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14A78519-7256-4F0B-9328-E19A13E406E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{419509E9-538D-45AB-ABC7-FFF6B27C1B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{419509E9-538D-45AB-ABC7-FFF6B27C1B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{419509E9-538D-45AB-ABC7-FFF6B27C1B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{419509E9-538D-45AB-ABC7-FFF6B27C1B9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

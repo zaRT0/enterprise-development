@@ -1,13 +1,13 @@
 ﻿using Airline.Domain.Entities;
 
-namespace Airline.Tests;
+namespace Airline.Domain.DataSeeder;
 
 /// <summary>
 /// Provides a comprehensive set of predefined data for airline domain entities to be used in unit tests.
 /// Contains collections of aircraft families, aircraft models, flights, passengers, and tickets.
 /// This fixture supplies consistent and realistic data scenarios for reliable and repeatable testing.
 /// </summary>
-public class TestsDataFixture
+public class DataFixture
 {
     /// <summary>
     /// A list of aircraft families categorizing aircraft models by manufacturer and design lineage.

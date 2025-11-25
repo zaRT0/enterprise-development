@@ -6,7 +6,9 @@ public interface IRepository<T> where T : class
     public Task AddAsync(T entity);
 
     public Task<T?> GetByIdAsync(int id);
+
     public Task<IEnumerable<T>> GetAllAsync();
+
     public Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
 
     public Task UpdateAsync(T entity);

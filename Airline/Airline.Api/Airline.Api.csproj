@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Pomelo.EntityFrameworkCore.MySql" Version="9.5.2" />
+    <PackageReference Include="AutoMapper" Version="15.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Airline.Domain\Airline.Domain.csproj" />
+    <ProjectReference Include="..\Airline.Dtos\Airline.Dtos.csproj" />
+    <ProjectReference Include="..\Airline.Infrastructure\Airline.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

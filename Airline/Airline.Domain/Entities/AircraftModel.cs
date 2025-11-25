@@ -13,7 +13,7 @@ public class AircraftModel
 
     /// <summary>
     /// The official name or designation of the aircraft model
-    /// </summary>
+    /// </summary> 
     public required string Name { get; set; }
 
     /// <summary>

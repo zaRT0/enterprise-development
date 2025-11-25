@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Airline.Infrastructure.Repositories;
-public class AircraftFlightRepository(AppDbContext context) : IRepository<Flight>
+public class FlightRepository(AppDbContext context) : IRepository<Flight>
 {
     public async Task<IEnumerable<Flight>> GetAllAsync() =>
         await context.Flights.ToListAsync();

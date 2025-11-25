@@ -14,7 +14,7 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
     /// Ensures the result matches expected flight codes and counts in descending order of passenger count.
     /// </summary>
     [Fact]
-    public void TopFlightsByPassengerCount()
+    public void TopFlightsByPassengerCount()//выводим список полетов и количество пассажиров (новая dto), одно поле flightgetdto И доп поле count ЕСТЬ
     {
         var expected = new[]
         {
@@ -48,7 +48,7 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
     /// Checks that the expected flight code is returned for the shortest flight duration.
     /// </summary>
     [Fact]
-    public void FlightsWithMinimalDuration()
+    public void FlightsWithMinimalDuration()//существующая dto flightgetdto ЕСТЬ
     {
         var minDuration = fixture.Flights.Min(f => f.Duration);
 
@@ -68,7 +68,7 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
    /// Validates against expected passenger names to ensure accurate filtering by baggage information. 
    /// </summary>
    [Fact]
-    public void PassangersWithZeroBaggageWeight()
+    public void PassangersWithZeroBaggageWeight()//существующая dto passengetgetdto ЕСТЬ
     {
         var flightId = 1;
 
@@ -92,7 +92,7 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
     /// Verifies one object, includes total flight count, passenger count and massive of flights codes
     /// </summary>
     [Fact]
-    public void InformationAboutModelsFlightsPeriod()
+    public void InformationAboutModelsFlightsPeriod()//доп дто, хранит модель самолета и список всех полетов данной модели ЕСТЬ
     {
         var model = fixture.Models.Single(m => m.Name == "737-800");
 
@@ -122,7 +122,7 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
     /// Ensures only flights matching the specified route are returned, matching expected flight codes. 
     /// </summary>
     [Fact]
-    public void FlightsFromDepartureToArrival()
+    public void FlightsFromDepartureToArrival()//использовать существующую dto flightgetdto
     {
         var expectedCodes = new[] { "SU1234" };
 

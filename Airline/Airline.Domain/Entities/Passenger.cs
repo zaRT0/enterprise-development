@@ -25,4 +25,6 @@ public class Passenger
     /// </summary>
     public required DateOnly BirthDate { get; set; }
 
+    public int? PassengerId { get; set; }
+
 }

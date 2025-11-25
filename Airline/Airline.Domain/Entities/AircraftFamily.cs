@@ -20,4 +20,6 @@ public class AircraftFamily
     /// The name of the manufacturer producing this family of aircraft.
     /// </summary>
     public required string ManufacturerName { get; set; }
+
+    public int? AircraftModelId { get; set; }
 }

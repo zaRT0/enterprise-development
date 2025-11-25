@@ -32,8 +32,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             fam.Property(air => air.ManufacturerName)
                 .IsRequired()
                 .HasMaxLength(128);
-
-            fam.HasData(dataFixture.Families);
         });
 
         modelBuilder.Entity<AircraftModel>(mode =>
@@ -58,10 +56,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
             mode.HasOne(am => am.ModelFamily)
                  .WithMany()
-                 .HasForeignKey("Id")
+                 .HasForeignKey("ModelFamilyId")
                  .OnDelete(DeleteBehavior.Restrict);
-
-            mode.HasData(dataFixture.Models);
         });
 
         modelBuilder.Entity<Flight>(f =>
@@ -88,10 +84,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
             f.HasOne(f => f.AircraftModel)
               .WithMany()
-              .HasForeignKey("Id")
+              .HasForeignKey("AircraftModelId")
               .OnDelete(DeleteBehavior.Restrict);
-
-            f.HasData(dataFixture.Flights);
         });
 
         modelBuilder.Entity<Passenger>(pass =>
@@ -110,7 +104,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
                  .IsRequired();
 
             pass.HasData(dataFixture.Passengers);
-
         });
 
         modelBuilder.Entity<Ticket>(tick =>
@@ -129,16 +122,13 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
             tick.HasOne(tick => tick.Flight)
                  .WithMany()
-                 .HasForeignKey("Id")
+                 .HasForeignKey("FlightId")
                  .OnDelete(DeleteBehavior.Restrict);
 
             tick.HasOne(tick => tick.Passenger)
                  .WithMany()
-                 .HasForeignKey("Id")
+                 .HasForeignKey("PassengerId")
                  .OnDelete(DeleteBehavior.Restrict);
-
-            tick.HasData(dataFixture.Tickets);
-
         });
     }
 }

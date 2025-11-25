@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline.Dtos", "Airline.Dto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline.Api", "Airline.Api\Airline.Api.csproj", "{B28F7B55-272F-44D9-A033-6B88AD68E263}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline.AppHost", "Airline.AppHost\Airline.AppHost.csproj", "{3BD41354-D1C9-4B36-9D29-DB1A95297573}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline.ServiceDefaults", "Airline.ServiceDefaults\Airline.ServiceDefaults.csproj", "{2BA6BBCB-7758-4FEC-A28E-AC3ECF1973DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{B28F7B55-272F-44D9-A033-6B88AD68E263}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B28F7B55-272F-44D9-A033-6B88AD68E263}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B28F7B55-272F-44D9-A033-6B88AD68E263}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BD41354-D1C9-4B36-9D29-DB1A95297573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BD41354-D1C9-4B36-9D29-DB1A95297573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BD41354-D1C9-4B36-9D29-DB1A95297573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BD41354-D1C9-4B36-9D29-DB1A95297573}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BA6BBCB-7758-4FEC-A28E-AC3ECF1973DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BA6BBCB-7758-4FEC-A28E-AC3ECF1973DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BA6BBCB-7758-4FEC-A28E-AC3ECF1973DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BA6BBCB-7758-4FEC-A28E-AC3ECF1973DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

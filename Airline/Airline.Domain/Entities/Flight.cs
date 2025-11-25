@@ -45,4 +45,6 @@ public class Flight
     /// Aircraft model used for this flight.
     /// </summary>
     public required AircraftModel AircraftModel { get; set; }
+
+    public int? FlightId { get; set; }
 }

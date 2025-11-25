@@ -35,4 +35,6 @@ public class AircraftModel
     /// Maximum cargo capacity of the aircraft measured in metric tons.
     /// </summary>
     public required float CargoCapacity { get; set; }
+
+    public int? ModelFamilyId  { get; set; }
 }

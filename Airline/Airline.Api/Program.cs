@@ -5,13 +5,16 @@ using Airline.Domain.Entities;
 using Airline.Domain.Interfaces;
 using Airline.Infrastructure.Repositories;
 using System.Reflection;
+using Airline.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
-        new MySqlServerVersion(new Version(8, 0, 0))
+        new MySqlServerVersion(new Version(9, 0, 0))
     ));
 
 builder.Services.AddScoped(typeof(IRepository<Flight>), typeof(FlightRepository));
@@ -34,6 +37,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 if (app.Environment.IsDevelopment())
 {

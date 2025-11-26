@@ -2,17 +2,42 @@
 
 namespace Airline.Domain.DataSeeder;
 
+/// <summary>
+/// Provides sample data for seeding the database.
+/// Contains predefined lists of aircraft families, aircraft models, flights, passengers, and tickets.
+/// </summary>
 public class DataFixture
 {
+    /// <summary>
+    /// Predefined list of aircraft families.
+    /// </summary>
     public List<AircraftFamily> Families { get; }
+
+    /// <summary>
+    /// Predefined list of aircraft models.
+    /// </summary>
     public List<AircraftModel> Models { get; }
+
+    /// <summary>
+    /// Predefined list of flights.
+    /// </summary>
     public List<Flight> Flights { get; }
+
+    /// <summary>
+    /// Predefined list of passengers.
+    /// </summary>
     public List<Passenger> Passengers { get; }
+
+    /// <summary>
+    /// Predefined list of tickets linking passengers to flights.
+    /// </summary>
     public List<Ticket> Tickets { get; }
 
+    /// <summary>
+    /// Initializes all predefined collections with sample data.
+    /// </summary>
     public DataFixture()
     {
-        // Aircraft Families
         Families = new()
         {
             new AircraftFamily { ModelName = "737", ManufacturerName = "Boeing" },
@@ -27,7 +52,6 @@ public class DataFixture
             new AircraftFamily { ModelName = "C919", ManufacturerName = "Comac" }
         };
 
-        // Aircraft Models
         Models = new()
         {
             new AircraftModel { Name = "737-800", ModelFamily = Families[0], FlightRange = 5765, PassengerCapacity = 189, CargoCapacity = 20.5f },
@@ -42,7 +66,6 @@ public class DataFixture
             new AircraftModel { Name = "C919", ModelFamily = Families[9], FlightRange = 5555, PassengerCapacity = 168, CargoCapacity = 19.5f }
         };
 
-        // Flights
         Flights = new()
         {
             new Flight { Code = "SU1234", DeparturePoint = "Moscow (SVO)", ArrivalPoint = "Sochi (AER)", DepartureDateTime = new DateTime(2025, 10, 20, 10, 30, 0), ArrivalDateTime = new DateTime(2025, 10, 20, 13, 0, 0), AircraftModel = Models[0] },
@@ -57,7 +80,6 @@ public class DataFixture
             new Flight { Code = "Z5555", DeparturePoint = "Irkutsk (IKT)", ArrivalPoint = "Khabarovsk (KHV)", DepartureDateTime = new DateTime(2025, 10, 29, 15, 20, 0), ArrivalDateTime = new DateTime(2025, 10, 29, 19, 50, 0), AircraftModel = Models[9] }
         };
 
-        // Passengers
         Passengers = new()
         {
             new Passenger { PassportNumber = "4244-123456", FullName = "Ivanov Ivan Ivanovic", BirthDate = new DateOnly(1985, 3, 12) },
@@ -85,7 +107,6 @@ public class DataFixture
             new Passenger { PassportNumber = "5241-658923", FullName = "Preobrazhenskaya Daria Vyacheslavovna", BirthDate = new DateOnly(1992, 5, 15) }
         };
 
-        // Tickets
         Tickets = new()
         {
             new Ticket { Flight = Flights[0], Passenger = Passengers[0], SeatNumber = "12A", IsHandLuggage = true, TotalBaggageWeight = 23.5f },

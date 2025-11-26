@@ -47,5 +47,8 @@ public class Flight
     /// </summary>
     public required AircraftModel AircraftModel { get; set; }
 
+    /// <summary>
+    /// Foreign key referencing the assigned aircraft model for this flight.
+    /// </summary>
     public int AircraftModelId { get; set; }
 }

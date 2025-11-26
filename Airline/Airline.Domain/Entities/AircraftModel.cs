@@ -36,5 +36,8 @@ public class AircraftModel
     /// </summary>
     public required float CargoCapacity { get; set; }
 
+    /// <summary>
+    /// Optional foreign key referencing the family ID of this aircraft model.
+    /// </summary>
     public int? ModelFamilyId  { get; set; }
 }

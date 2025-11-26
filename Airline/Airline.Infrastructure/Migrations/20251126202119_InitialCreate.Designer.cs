@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Airline.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251126174156_InitialCreate")]
+    [Migration("20251126202119_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -29,7 +29,8 @@ namespace Airline.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
@@ -39,12 +40,14 @@ namespace Airline.Infrastructure.Migrations
                     b.Property<string>("ManufacturerName")
                         .IsRequired()
                         .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("varchar(128)")
+                        .HasColumnName("manufacturer_name");
 
                     b.Property<string>("ModelName")
                         .IsRequired()
                         .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("varchar(128)")
+                        .HasColumnName("name");
 
                     b.HasKey("Id");
 
@@ -55,17 +58,20 @@ namespace Airline.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<float>("CargoCapacity")
                         .HasMaxLength(2)
-                        .HasColumnType("float");
+                        .HasColumnType("float")
+                        .HasColumnName("cargo_capacity");
 
                     b.Property<int>("FlightRange")
                         .HasMaxLength(5)
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("flight_range");
 
                     b.Property<int?>("ModelFamilyId")
                         .HasColumnType("int");
@@ -73,11 +79,13 @@ namespace Airline.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("varchar(128)")
+                        .HasColumnName("name");
 
                     b.Property<int>("PassengerCapacity")
                         .HasMaxLength(3)
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("passenger_capacity");
 
                     b.HasKey("Id");
 
@@ -90,7 +98,8 @@ namespace Airline.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
@@ -98,25 +107,30 @@ namespace Airline.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ArrivalDateTime")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("arrival_datetime");
 
                     b.Property<string>("ArrivalPoint")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("arrival_point");
 
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("varchar(20)")
+                        .HasColumnName("code");
 
                     b.Property<DateTime>("DepartureDateTime")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("departure_datetime");
 
                     b.Property<string>("DeparturePoint")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("departure_point");
 
                     b.HasKey("Id");
 
@@ -129,17 +143,20 @@ namespace Airline.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateOnly>("BirthDate")
-                        .HasColumnType("date");
+                        .HasColumnType("date")
+                        .HasColumnName("birth_date");
 
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("full_name");
 
                     b.Property<int?>("PassengerId")
                         .HasColumnType("int");
@@ -147,7 +164,8 @@ namespace Airline.Infrastructure.Migrations
                     b.Property<string>("PassportNumber")
                         .IsRequired()
                         .HasMaxLength(11)
-                        .HasColumnType("varchar(11)");
+                        .HasColumnType("varchar(11)")
+                        .HasColumnName("passport_number");
 
                     b.HasKey("Id");
 
@@ -158,7 +176,8 @@ namespace Airline.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
@@ -166,7 +185,8 @@ namespace Airline.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsHandLuggage")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("is_hand_luggage");
 
                     b.Property<int>("PassengerId")
                         .HasColumnType("int");
@@ -174,10 +194,12 @@ namespace Airline.Infrastructure.Migrations
                     b.Property<string>("SeatNumber")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("seat_number");
 
                     b.Property<float?>("TotalBaggageWeight")
-                        .HasColumnType("float");
+                        .HasColumnType("float")
+                        .HasColumnName("total_baggage_weight");
 
                     b.HasKey("Id");
 

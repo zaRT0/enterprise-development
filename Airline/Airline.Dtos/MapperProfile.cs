@@ -6,8 +6,16 @@ using Airline.Dtos.TicketDtos;
 using AutoMapper;
 
 namespace Airline.Dtos;
+
+/// <summary>
+/// AutoMapper profile defining mappings between domain entities and DTOs.
+/// </summary>
 public class MapperProfile : Profile
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MapperProfile"/> class
+    /// and configures all entity-to-DTO and DTO-to-entity mappings.
+    /// </summary>
     public MapperProfile()
     {
         CreateMap<Flight, FlightGetDto>();

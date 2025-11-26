@@ -21,5 +21,9 @@ public class AircraftFamily
     /// </summary>
     public required string ManufacturerName { get; set; }
 
+    /// <summary>
+    /// Optional identifier of a related aircraft model.
+    /// Can be used to reference a specific model within this family.
+    /// </summary>
     public int? AircraftModelId { get; set; }
 }

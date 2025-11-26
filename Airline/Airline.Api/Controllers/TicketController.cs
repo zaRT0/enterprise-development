@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Airline.Api.Controllers;
 
+/// <summary>
+/// Controller responsible for handling CRUD operations for tickets.
+/// Provides endpoints to create, read, update, and delete tickets.
+/// </summary>
+
 [ApiController]
 [Route("api/tickets")]
 public class TicketController(
@@ -13,6 +18,10 @@ public class TicketController(
     IMapper mapper
 ) : ControllerBase
 {
+
+    /// <summary>
+    /// Retrieves all tickets.
+    /// </summary>
     [HttpGet]
     [ProducesResponseType(200)]
     public async Task<ActionResult<IEnumerable<TicketGetDto>>> GetAll()
@@ -22,6 +31,9 @@ public class TicketController(
         return Ok(result);
     }
 
+    /// <summary>
+    /// Retrieves a ticket by its unique identifier.
+    /// </summary>
     [HttpGet("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
@@ -35,6 +47,9 @@ public class TicketController(
         return Ok(dto);
     }
 
+    /// <summary>
+    /// Creates a new ticket.
+    /// </summary>
     [HttpPost]
     [ProducesResponseType(201)]
     [ProducesResponseType(400)]
@@ -50,6 +65,9 @@ public class TicketController(
         return CreatedAtAction(nameof(GetById), new { id = createdDto.Id }, createdDto);
     }
 
+    /// <summary>
+    /// Updates an existing ticket by ID.
+    /// </summary>
     [HttpPut("{id:int}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
@@ -70,6 +88,9 @@ public class TicketController(
         return NoContent();
     }
 
+    /// <summary>
+    /// Deletes a ticket by its unique identifier.
+    /// </summary>
     [HttpDelete("{id:int}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]

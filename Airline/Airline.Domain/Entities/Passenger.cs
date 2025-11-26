@@ -25,6 +25,9 @@ public class Passenger
     /// </summary>
     public required DateOnly BirthDate { get; set; }
 
+    /// <summary>
+    /// Optional foreign key referencing this passenger.
+    /// Can be used for related entity associations if needed.
+    /// </summary>
     public int? PassengerId { get; set; }
-
 }

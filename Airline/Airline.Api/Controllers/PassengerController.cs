@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Airline.Api.Controllers;
 
+/// <summary>
+/// Controller responsible for managing passenger data.
+/// Provides endpoints to create, read, update, and delete passengers.
+/// </summary>
 [ApiController]
 [Route("api/passengers")]
 public class PassengerController(
@@ -13,6 +17,9 @@ public class PassengerController(
     IMapper mapper
 ) : ControllerBase
 {
+    /// <summary>
+    /// Retrieves all passengers.
+    /// </summary>
     [HttpGet]
     [ProducesResponseType(200)]
     public async Task<ActionResult<IEnumerable<PassengerGetDto>>> GetAll()
@@ -22,6 +29,9 @@ public class PassengerController(
         return Ok(result);
     }
 
+    /// <summary>
+    /// Retrieves a passenger by unique ID.
+    /// </summary>
     [HttpGet("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
@@ -35,6 +45,9 @@ public class PassengerController(
         return Ok(dto);
     }
 
+    /// <summary>
+    /// Creates a new passenger.
+    /// </summary>
     [HttpPost]
     [ProducesResponseType(201)]
     [ProducesResponseType(400)]
@@ -50,6 +63,9 @@ public class PassengerController(
         return CreatedAtAction(nameof(GetById), new { id = createdDto.Id }, createdDto);
     }
 
+    /// <summary>
+    /// Updates an existing passenger by ID.
+    /// </summary>
     [HttpPut("{id:int}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
@@ -70,6 +86,9 @@ public class PassengerController(
         return NoContent();
     }
 
+    /// <summary>
+    /// Deletes a passenger by unique ID.
+    /// </summary>
     [HttpDelete("{id:int}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]

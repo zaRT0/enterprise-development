@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Airline.Api.Controllers;
 
+/// <summary>
+/// Controller responsible for managing flight data.
+/// Provides endpoints to create, read, update, and delete flights.
+/// </summary>
 [ApiController]
 [Route("api/flights")]
 public class FlightController(
@@ -13,6 +17,9 @@ public class FlightController(
     IMapper mapper
 ) : ControllerBase
 {
+    /// <summary>
+    /// Retrieves all flights.
+    /// </summary>
     [HttpGet]
     [ProducesResponseType(200)]
     public async Task<ActionResult<IEnumerable<FlightGetDto>>> GetAll()
@@ -22,6 +29,9 @@ public class FlightController(
         return Ok(result);
     }
 
+    /// <summary>
+    /// Retrieves a flight by unique ID.
+    /// </summary>
     [HttpGet("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
@@ -35,6 +45,9 @@ public class FlightController(
         return Ok(dto);
     }
 
+    /// <summary>
+    /// Creates a new flight.
+    /// </summary>
     [HttpPost]
     [ProducesResponseType(201)]
     [ProducesResponseType(400)]
@@ -50,6 +63,9 @@ public class FlightController(
         return CreatedAtAction(nameof(GetById), new { id = createdDto.Id }, createdDto);
     }
 
+    /// <summary>
+    /// Updates an existing flight by ID.
+    /// </summary>
     [HttpPut("{id:int}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
@@ -70,6 +86,9 @@ public class FlightController(
         return NoContent();
     }
 
+    /// <summary>
+    /// Deletes a flight by unique ID.
+    /// </summary>
     [HttpDelete("{id:int}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]

@@ -29,7 +29,7 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
             .Where(t => t.Flight != null && t.Passenger != null);
 
         var query = tickets
-            .GroupBy(t => t.Flight.Code) // группировка по коду рейса
+            .GroupBy(t => t.Flight.Code)
             .Select(g => new { FlightCode = g.Key, PassengersCount = g.Count() })
             .OrderByDescending(x => x.PassengersCount)
             .ThenBy(x => x.FlightCode)
@@ -44,7 +44,7 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
     /// Checks that the expected flight code is returned for the shortest flight duration.
     /// </summary>
     [Fact]
-    public void FlightsWithMinimalDuration()//существующая dto flightgetdto ЕСТЬ
+    public void FlightsWithMinimalDuration()
     {
         var minDuration = fixture.Flights.Min(f => f.Duration);
 
@@ -66,7 +66,6 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
     [Fact]
     public void PassengersWithZeroBaggageWeight()
     {
-        // Используем код рейса, он точно задан в фикстуре (например "SU1234")
         var flightCode = "SU1234";
 
         var expectedPassengers = new[]
@@ -126,7 +125,7 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
     /// Ensures only flights matching the specified route are returned, matching expected flight codes. 
     /// </summary>
     [Fact]
-    public void FlightsFromDepartureToArrival()//использовать существующую dto flightgetdto
+    public void FlightsFromDepartureToArrival()
     {
         var expectedCodes = new[] { "SU1234" };
 

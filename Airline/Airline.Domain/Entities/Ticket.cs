@@ -39,5 +39,4 @@ public class Ticket
     /// Total baggage weight in kilograms, if present.
     /// </summary>
     public float? TotalBaggageWeight { get; set; }
-
 }

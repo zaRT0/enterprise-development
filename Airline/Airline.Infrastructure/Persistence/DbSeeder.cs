@@ -1,8 +1,15 @@
 ﻿using Airline.Domain.DataSeeder;
 
 namespace Airline.Infrastructure.Persistence;
+
+/// <summary>
+/// Provides extension methods for seeding the database with initial data.
+/// </summary>
 public static class DbSeeder
 {
+    /// <summary>
+    /// Seeds the database with initial data if it is empty.
+    /// </summary>
     public static void Seed(this AppDbContext context)
     {
 

@@ -10,6 +10,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Airline.Api.Controllers;
 
+/// <summary>
+/// Controller providing analytical endpoints for flights, passengers, and aircraft models.
+/// </summary>
 [ApiController]
 [Route("api/analytics")]
 public class AnalyticsController(
@@ -21,10 +24,11 @@ public class AnalyticsController(
 ) : ControllerBase
 {
     /// <summary>
-    /// Возвращает топ-5 рейсов по количеству пассажиров
+    /// Returns the top 5 flights by passenger count.
     /// </summary>
     [HttpGet("top-flights-by-passenger-count")]
     [ProducesResponseType(200)]
+    [ProducesResponseType(404)]
     public async Task<ActionResult<IEnumerable<FlightsByPassengerCountDto>>> GetTopFlightsByPassengerCount()
     {
         var tickets = await ticketRepo.GetAllAsync();
@@ -51,7 +55,7 @@ public class AnalyticsController(
     }
 
     /// <summary>
-    /// Возвращает рейсы по модели самолёта за период
+    /// Returns flights of a specific aircraft model within a given period.
     /// </summary>
     [HttpGet("flights-by-model-period")]
     [ProducesResponseType(200)]
@@ -85,10 +89,11 @@ public class AnalyticsController(
     }
 
     /// <summary>
-    /// Возвращает рейсы с минимальной длительностью
+    /// Returns flights with the minimal duration.
     /// </summary>
     [HttpGet("flights-min-duration")]
     [ProducesResponseType(200)]
+    [ProducesResponseType(404)]
     public async Task<ActionResult<IEnumerable<FlightGetDto>>> GetFlightsWithMinimalDuration()
     {
         var flights = await flightRepo.GetAllAsync();
@@ -108,9 +113,11 @@ public class AnalyticsController(
     }
 
     /// <summary>
-    /// Возвращает пассажиров с нулевым или отсутствующим багажом на конкретном рейсе
+    /// Returns passengers with zero or missing baggage for a specific flight code.
     /// </summary>
     [HttpGet("passengers-zero-baggage-by-code")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(404)]
     public async Task<ActionResult<IEnumerable<PassengerGetDto>>> GetPassengersWithZeroBaggageByFlightCode([FromQuery] string flightCode)
     {
         if (string.IsNullOrEmpty(flightCode))
@@ -137,11 +144,13 @@ public class AnalyticsController(
         var result = mapper.Map<List<PassengerGetDto>>(passengers);
         return Ok(result);
     }
+
     /// <summary>
-    /// Возвращает рейсы между двумя точками
+    /// Returns flights between a departure and arrival point.
     /// </summary>
     [HttpGet("flights-from-to")]
     [ProducesResponseType(200)]
+    [ProducesResponseType(404)]
     public async Task<ActionResult<IEnumerable<FlightGetDto>>> GetFlightsFromDepartureToArrival(
         [FromQuery] string departurePoint,
         [FromQuery] string arrivalPoint)

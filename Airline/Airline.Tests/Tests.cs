@@ -14,7 +14,7 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
     /// Ensures the result matches expected flight codes and counts in descending order of passenger count.
     /// </summary>
     [Fact]
-    public void TopFlightsByPassengerCount()//выводим список полетов и количество пассажиров (новая dto), одно поле flightgetdto И доп поле count ЕСТЬ
+    public void TopFlightsByPassengerCount()
     {
         var expected = new[]
         {
@@ -29,18 +29,14 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
             .Where(t => t.Flight != null && t.Passenger != null);
 
         var query = tickets
-            .GroupBy(t => t.Flight.Id)
-            .Select(g =>
-            {
-                var flight = fixture.Flights.Single(f => f.Id == g.Key);
-                return new { Flight = flight, PassengersCount = g.Count() };
-            })
+            .GroupBy(t => t.Flight.Code) // группировка по коду рейса
+            .Select(g => new { FlightCode = g.Key, PassengersCount = g.Count() })
             .OrderByDescending(x => x.PassengersCount)
-            .ThenBy(x => x.Flight.Code)
+            .ThenBy(x => x.FlightCode)
             .Take(5)
             .ToArray();
 
-            Assert.Equal(expected, [.. query.Select(q => (q.Flight.Code, Count: q.PassengersCount))]);
+        Assert.Equal(expected, query.Select(q => (q.FlightCode, Count: q.PassengersCount)));
     }
 
     /// <summary>
@@ -63,14 +59,15 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
         Assert.Equal(expected, queryCodes);
     }
 
-   /// <summary>
-   /// Tests retrieval of passengers with zero baggage weight for a specific flight.
-   /// Validates against expected passenger names to ensure accurate filtering by baggage information. 
-   /// </summary>
-   [Fact]
-    public void PassangersWithZeroBaggageWeight()//существующая dto passengetgetdto ЕСТЬ
+    /// <summary>
+    /// Tests retrieval of passengers with zero baggage weight for a specific flight.
+    /// Validates against expected passenger names to ensure accurate filtering by baggage information. 
+    /// </summary>
+    [Fact]
+    public void PassengersWithZeroBaggageWeight()
     {
-        var flightId = 1;
+        // Используем код рейса, он точно задан в фикстуре (например "SU1234")
+        var flightCode = "SU1234";
 
         var expectedPassengers = new[]
         {
@@ -79,7 +76,10 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
         };
 
         var queryPassengers = fixture.Tickets
-            .Where(t => t.Flight.Id == flightId && t.TotalBaggageWeight == null)
+            .Where(t => t.Flight != null
+                        && t.Flight.Code == flightCode
+                        && (t.TotalBaggageWeight == null || t.TotalBaggageWeight == 0)
+                        && t.Passenger != null)
             .Select(t => t.Passenger.FullName)
             .Order()
             .ToArray();
@@ -92,30 +92,34 @@ public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
     /// Verifies one object, includes total flight count, passenger count and massive of flights codes
     /// </summary>
     [Fact]
-    public void InformationAboutModelsFlightsPeriod()//доп дто, хранит модель самолета и список всех полетов данной модели ЕСТЬ
+    public void InformationAboutModelsFlightsPeriod()
     {
         var model = fixture.Models.Single(m => m.Name == "737-800");
 
-        var startDate = new DateTime(2025, 10, 20, 00, 00, 00);
-        var endDate = new DateTime(2025, 10, 25, 00, 00, 00);
+        var startDate = new DateTime(2025, 10, 20, 0, 0, 0);
+        var endDate = new DateTime(2025, 10, 25, 0, 0, 0);
 
+        // Используем ссылку на модель напрямую, а не Id
         var filteredTickets = fixture.Tickets
             .Where(t => t.Flight != null
-                        && t.Flight.AircraftModel.Id == model.Id
+                        && t.Flight.AircraftModel == model
                         && t.Flight.DepartureDateTime >= startDate
-                        && t.Flight.DepartureDateTime <= endDate)
+                        && t.Flight.DepartureDateTime <= endDate
+                        && t.Passenger != null)
             .ToList();
 
         var result = new
         {
-            TotalFlights = filteredTickets.Select(t => t.Flight.Id).Distinct().Count(),
+            TotalFlights = filteredTickets.Select(t => t.Flight).Distinct().Count(),
             TotalPassengers = filteredTickets.Count,
             FlightCodes = filteredTickets.Select(t => t.Flight.Code).Distinct().ToArray()
         };
 
         Assert.Equal(1, result.TotalFlights);
         Assert.Equal(5, result.TotalPassengers);
+        Assert.Contains("SU1234", result.FlightCodes);
     }
+
 
     /// <summary>
     /// Validates filtering of flights by a specified departure and arrival point.

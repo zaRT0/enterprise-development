@@ -3,6 +3,7 @@
 namespace Airline.Domain.Interfaces;
 public interface IRepository<T> where T : class
 {
+    public IQueryable<T> Query();
     public Task AddAsync(T entity);
 
     public Task<T?> GetByIdAsync(int id);

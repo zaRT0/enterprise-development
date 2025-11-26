@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 namespace Airline.Infrastructure.Repositories;
 public class PassengerRepository(AppDbContext context) : IRepository<Passenger>
 {
+    public IQueryable<Passenger> Query() => context.Passengers.AsQueryable();
     public async Task<IEnumerable<Passenger>> GetAllAsync() =>
         await context.Passengers.ToListAsync();
 

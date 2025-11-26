@@ -6,6 +6,8 @@ using Airline.Dtos.AircraftModelDtos;
 using Airline.Dtos.FlightDtos;
 using Airline.Dtos.PassengerDtos;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+
 namespace Airline.Api.Controllers;
 
 [ApiController]
@@ -18,7 +20,9 @@ public class AnalyticsController(
     IMapper mapper
 ) : ControllerBase
 {
-    // Топ 5 рейсов по количеству пассажиров
+    /// <summary>
+    /// Возвращает топ-5 рейсов по количеству пассажиров
+    /// </summary>
     [HttpGet("top-flights-by-passenger-count")]
     [ProducesResponseType(200)]
     public async Task<ActionResult<IEnumerable<FlightsByPassengerCountDto>>> GetTopFlightsByPassengerCount()
@@ -27,8 +31,8 @@ public class AnalyticsController(
         var flights = await flightRepo.GetAllAsync();
 
         var query = tickets
-            .Where(t => t.Flight != null && t.Passenger != null)
-            .GroupBy(t => t.Flight.Id)
+            .Where(t => t.FlightId != 0)
+            .GroupBy(t => t.FlightId)
             .Select(g =>
             {
                 var flight = flights.First(f => f.Id == g.Key);
@@ -46,7 +50,9 @@ public class AnalyticsController(
         return Ok(query);
     }
 
-    // Полёты по модели самолёта за период
+    /// <summary>
+    /// Возвращает рейсы по модели самолёта за период
+    /// </summary>
     [HttpGet("flights-by-model-period")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
@@ -63,8 +69,10 @@ public class AnalyticsController(
             return NotFound();
 
         var filteredFlights = flights
-            .Where(f => f.AircraftModel != null && f.AircraftModel.Id == modelId
-                        && f.DepartureDateTime >= start && f.DepartureDateTime <= end)
+            .Where(f => f.AircraftModelId == modelId
+                        && f.DepartureDateTime >= start
+                        && f.DepartureDateTime <= end)
+            .OrderBy(f => f.DepartureDateTime)
             .ToList();
 
         var result = new ModelsFlightByPeriodDto
@@ -76,14 +84,20 @@ public class AnalyticsController(
         return Ok(result);
     }
 
-    // Минимальная длительность полётов, возвращаем FlightGetDto по минимальному времени
+    /// <summary>
+    /// Возвращает рейсы с минимальной длительностью
+    /// </summary>
     [HttpGet("flights-min-duration")]
     [ProducesResponseType(200)]
     public async Task<ActionResult<IEnumerable<FlightGetDto>>> GetFlightsWithMinimalDuration()
     {
         var flights = await flightRepo.GetAllAsync();
 
+        if (!flights.Any())
+            return Ok(new List<FlightGetDto>());
+
         var minDuration = flights.Min(f => f.Duration);
+
         var minDurationFlights = flights
             .Where(f => f.Duration == minDuration)
             .OrderBy(f => f.Code)
@@ -93,32 +107,47 @@ public class AnalyticsController(
         return Ok(result);
     }
 
-    // Пассажиры со 0 весом багажа на конкретном рейсе
-    [HttpGet("passengers-zero-baggage")]
-    [ProducesResponseType(200)]
-    public async Task<ActionResult<IEnumerable<PassengerGetDto>>> GetPassengersWithZeroBaggage(
-        [FromQuery] int flightId)
+    /// <summary>
+    /// Возвращает пассажиров с нулевым или отсутствующим багажом на конкретном рейсе
+    /// </summary>
+    [HttpGet("passengers-zero-baggage-by-code")]
+    public async Task<ActionResult<IEnumerable<PassengerGetDto>>> GetPassengersWithZeroBaggageByFlightCode([FromQuery] string flightCode)
     {
-        var tickets = await ticketRepo.GetAllAsync();
-        var passengers = await passengerRepo.GetAllAsync();
+        if (string.IsNullOrEmpty(flightCode))
+            return BadRequest("Flight code is required.");
 
-        var filteredPassengers = tickets
-            .Where(t => t.Flight.Id == flightId && (t.TotalBaggageWeight == null || t.TotalBaggageWeight == 0))
-            .Select(t => t.Passenger)
-            .Distinct()
+        var tickets = await ticketRepo.Query()
+            .Include(t => t.Flight)
+            .Include(t => t.Passenger)
+            .Where(t => t.Flight != null
+                        && t.Flight.Code == flightCode
+                        && (t.TotalBaggageWeight == null || t.TotalBaggageWeight == 0)
+                        && t.Passenger != null)
+            .ToListAsync();
+
+        var passengers = tickets
+            .Select(t => t.Passenger!)
+            .GroupBy(p => p.Id)
+            .Select(g => g.First())
             .ToList();
 
-        var result = mapper.Map<List<PassengerGetDto>>(filteredPassengers);
+        if (!passengers.Any())
+            return NotFound($"No passengers with zero baggage found for flight {flightCode}.");
+
+        var result = mapper.Map<List<PassengerGetDto>>(passengers);
         return Ok(result);
     }
-
+    /// <summary>
+    /// Возвращает рейсы между двумя точками
+    /// </summary>
     [HttpGet("flights-from-to")]
     [ProducesResponseType(200)]
     public async Task<ActionResult<IEnumerable<FlightGetDto>>> GetFlightsFromDepartureToArrival(
-    [FromQuery] string departurePoint,
-    [FromQuery] string arrivalPoint)
+        [FromQuery] string departurePoint,
+        [FromQuery] string arrivalPoint)
     {
         var flights = await flightRepo.GetAllAsync();
+
         var filteredFlights = flights
             .Where(f => f.DeparturePoint == departurePoint && f.ArrivalPoint == arrivalPoint)
             .OrderBy(f => f.Code)

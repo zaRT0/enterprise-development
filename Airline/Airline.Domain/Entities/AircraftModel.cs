@@ -9,7 +9,7 @@ public class AircraftModel
     /// <summary>
     /// Unique identifier of the aircraft model.
     /// </summary>
-    public required int Id { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
     /// The official name or designation of the aircraft model

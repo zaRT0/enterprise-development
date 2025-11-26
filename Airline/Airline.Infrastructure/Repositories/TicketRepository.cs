@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 namespace Airline.Infrastructure.Repositories;
 public class TicketRepository(AppDbContext context) : IRepository<Ticket>
 {
+    public IQueryable<Ticket> Query() => context.Tickets.AsQueryable();
     public async Task<IEnumerable<Ticket>> GetAllAsync() =>
         await context.Tickets.ToListAsync();
 

@@ -103,7 +103,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             pass.Property(pass => pass.BirthDate)
                  .IsRequired();
 
-            pass.HasData(dataFixture.Passengers);
         });
 
         modelBuilder.Entity<Ticket>(tick =>
@@ -118,7 +117,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
                  .IsRequired();
 
             tick.Property(tick => tick.TotalBaggageWeight)
-                 .IsRequired();
+                 .IsRequired(false);
 
             tick.HasOne(tick => tick.Flight)
                  .WithMany()

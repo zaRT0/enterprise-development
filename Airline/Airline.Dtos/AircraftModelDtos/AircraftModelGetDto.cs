@@ -13,5 +13,4 @@ public class AircraftModelGetDto
 
     public required int ModelFamilyId { get; set; }
 
-    public required string FamilyName { get; set; }
 }

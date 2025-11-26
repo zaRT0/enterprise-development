@@ -9,7 +9,7 @@ public class AircraftFamily
     /// <summary>
     /// Unique identifier for the AircraftFamily object
     /// </summary>
-    public required int Id { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
     /// The model family name, identifying a series or block of models.

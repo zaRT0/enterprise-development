@@ -115,9 +115,6 @@ namespace Airline.Infrastructure.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
-                    b.Property<int?>("FlightId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AircraftModelId");
@@ -152,169 +149,6 @@ namespace Airline.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Passengers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BirthDate = new DateOnly(1985, 3, 12),
-                            FullName = "Ivanov Ivan Ivanovic",
-                            PassportNumber = "4244-123456"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BirthDate = new DateOnly(1990, 7, 22),
-                            FullName = "Petrova Maria Sergeevna",
-                            PassportNumber = "4244-234567"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BirthDate = new DateOnly(1978, 11, 5),
-                            FullName = "Sidorov Alexey Vladimirovich",
-                            PassportNumber = "4244-345678"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BirthDate = new DateOnly(2000, 1, 30),
-                            FullName = "Kuznetsova Anna Olegovna",
-                            PassportNumber = "4244-456789"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BirthDate = new DateOnly(1982, 9, 14),
-                            FullName = "Smirnov Dmitry Andreevich",
-                            PassportNumber = "4202-567890"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BirthDate = new DateOnly(1995, 4, 18),
-                            FullName = "Popova Ekaterina Nikolaevna",
-                            PassportNumber = "4201-678901"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BirthDate = new DateOnly(1970, 12, 25),
-                            FullName = "Volkov Sergey Pavlovich",
-                            PassportNumber = "4568-789012"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BirthDate = new DateOnly(1988, 6, 9),
-                            FullName = "Morozova Olga Viktorovna",
-                            PassportNumber = "4857-890123"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BirthDate = new DateOnly(1992, 8, 3),
-                            FullName = "Lebedev Artyom Yuryevich",
-                            PassportNumber = "3618-524872"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            BirthDate = new DateOnly(1997, 2, 14),
-                            FullName = "Novikova Daria Igorevna",
-                            PassportNumber = "8574-658974"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            BirthDate = new DateOnly(1983, 5, 10),
-                            FullName = "Abramov Nikolay Petrovich",
-                            PassportNumber = "1111-111111"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            BirthDate = new DateOnly(1991, 12, 3),
-                            FullName = "Belova Vera Stepanovna",
-                            PassportNumber = "2222-222222"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            BirthDate = new DateOnly(1987, 8, 22),
-                            FullName = "Grigoryev Maxim Igorevich",
-                            PassportNumber = "3333-333333"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            BirthDate = new DateOnly(1999, 3, 17),
-                            FullName = "Dmitrieva Sofya Andreevna",
-                            PassportNumber = "4444-444444"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            BirthDate = new DateOnly(1975, 11, 30),
-                            FullName = "Efimov Roman Valeryevich",
-                            PassportNumber = "5555-555555"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            BirthDate = new DateOnly(1994, 7, 8),
-                            FullName = "Zhukova Polina Dmitrievna",
-                            PassportNumber = "6666-666666"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            BirthDate = new DateOnly(1989, 1, 15),
-                            FullName = "Zaitsev Ilya Olegovich",
-                            PassportNumber = "7777-777777"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            BirthDate = new DateOnly(1996, 9, 25),
-                            FullName = "Ivanova Kseniya Sergeevna",
-                            PassportNumber = "8888-888888"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            BirthDate = new DateOnly(1981, 4, 12),
-                            FullName = "Kozlov Vladislav Yuryevich",
-                            PassportNumber = "9999-999999"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            BirthDate = new DateOnly(1993, 6, 20),
-                            FullName = "Larionova Alina Viktorovna",
-                            PassportNumber = "0041-125874"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            BirthDate = new DateOnly(1986, 10, 5),
-                            FullName = "Makarov Daniil Pavlovich",
-                            PassportNumber = "8547-123456"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            BirthDate = new DateOnly(1998, 2, 28),
-                            FullName = "Nesterova Elizaveta Mikhailovna",
-                            PassportNumber = "3657-234567"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            BirthDate = new DateOnly(1992, 5, 15),
-                            FullName = "Preobrazhenskaya Daria Vyacheslavovna",
-                            PassportNumber = "5241-658923"
-                        });
                 });
 
             modelBuilder.Entity("Airline.Domain.Entities.Ticket", b =>
@@ -339,7 +173,7 @@ namespace Airline.Infrastructure.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)");
 
-                    b.Property<float>("TotalBaggageWeight")
+                    b.Property<float?>("TotalBaggageWeight")
                         .HasColumnType("float");
 
                     b.HasKey("Id");

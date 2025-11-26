@@ -9,12 +9,16 @@ public class Ticket
     /// <summary>
     /// Unique ticket identifier.
     /// </summary>
-    public required int Id { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
     /// Flight associated with this ticket.
     /// </summary>
     public required Flight Flight { get; set; }
+
+    public int FlightId { get; set; } // <-- FK
+
+    public int PassengerId { get; set; } // <-- FK
 
     /// <summary>
     /// Passenger who holds this ticket.

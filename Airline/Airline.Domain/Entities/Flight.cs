@@ -9,7 +9,7 @@ public class Flight
     /// <summary>
     /// Unique flight identifier.
     /// </summary>
-    public required int Id { get; set; }
+    public int Id { get; set; }
 
     /// <summary>
     /// Flight code or number used for identification.
@@ -25,6 +25,7 @@ public class Flight
     /// Airport and city of arrival including airport code.
     /// </summary>
     public required string ArrivalPoint { get; set; }
+
 
     /// <summary>
     /// Date and time of departure.
@@ -46,5 +47,5 @@ public class Flight
     /// </summary>
     public required AircraftModel AircraftModel { get; set; }
 
-    public int? FlightId { get; set; }
+    public int AircraftModelId { get; set; }
 }

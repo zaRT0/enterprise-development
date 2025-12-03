@@ -91,12 +91,11 @@ public class PassengerController(
     /// </summary>
     [HttpDelete("{id:int}")]
     [ProducesResponseType(204)]
-    [ProducesResponseType(404)]
     public async Task<ActionResult> Delete(int id)
     {
         var existingEntity = await repository.GetByIdAsync(id);
         if (existingEntity == null)
-            return NotFound();
+            return NoContent();
 
         await repository.DeleteAsync(id);
         return NoContent();

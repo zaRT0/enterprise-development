@@ -16,9 +16,17 @@ public class Ticket
     /// </summary>
     public required Flight Flight { get; set; }
 
-    public int FlightId { get; set; } // <-- FK
+    /// <summary>
+    /// Identifier of the flight associated with this ticket.
+    /// Serves as a foreign key to the Flight entity.
+    /// </summary>
+    public int FlightId { get; set; }
 
-    public int PassengerId { get; set; } // <-- FK
+    /// <summary>
+    /// Identifier of the passenger who owns this ticket.
+    /// Serves as a foreign key to the Passenger entity.
+    /// </summary>
+    public int PassengerId { get; set; }
 
     /// <summary>
     /// Passenger who holds this ticket.

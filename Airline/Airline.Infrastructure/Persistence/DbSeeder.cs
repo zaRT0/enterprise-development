@@ -15,7 +15,7 @@ public static class DbSeeder
 
         if (context.AircraftFamilys.Any() || context.AircraftModels.Any() || context.Passengers.Any() || context.Flights.Any() || context.Tickets.Any()) return;
 
-        var seed = new DataFixture();
+        var seed = new DataSeeder();
 
         context.AircraftFamilys.AddRange(seed.Families);
         context.AircraftModels.AddRange(seed.Models);

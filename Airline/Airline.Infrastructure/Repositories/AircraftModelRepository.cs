@@ -64,17 +64,8 @@ public class AircraftModelRepository(AppDbContext context) : IRepository<Aircraf
     /// </summary>
     public async Task DeleteAsync(int id)
     {
-        var entity = await context.AircraftModels.FindAsync(id);
-        if (entity == null)
-            throw new KeyNotFoundException($"AircraftModel with Id {id} not found.");
-
+        var entity = await context.AircraftModels.FindAsync(id) ?? throw new KeyNotFoundException($"AircraftModel with Id {id} not found.");
         context.AircraftModels.Remove(entity);
         await context.SaveChangesAsync();
     }
-
-    /// <summary>
-    /// Saves all pending changes in the <see cref="AppDbContext"/> to the database.
-    /// </summary>
-    public async Task SaveChangesAsync() =>
-        await context.SaveChangesAsync();
 }

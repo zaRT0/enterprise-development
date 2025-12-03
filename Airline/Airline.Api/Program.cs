@@ -17,11 +17,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         new MySqlServerVersion(new Version(9, 0, 0))
     ));
 
-builder.Services.AddScoped(typeof(IRepository<Flight>), typeof(FlightRepository));
-builder.Services.AddScoped(typeof(IRepository<AircraftFamily>), typeof(AircraftFamilyRepository));
-builder.Services.AddScoped(typeof(IRepository<AircraftModel>), typeof(AircraftModelRepository));
-builder.Services.AddScoped(typeof(IRepository<Passenger>), typeof(PassengerRepository));
-builder.Services.AddScoped(typeof(IRepository<Ticket>), typeof(TicketRepository));
+builder.Services.AddScoped<IRepository<Flight>, FlightRepository>();
+builder.Services.AddScoped<IRepository<AircraftFamily>, AircraftFamilyRepository>();
+builder.Services.AddScoped<IRepository<AircraftModel>, AircraftModelRepository>();
+builder.Services.AddScoped<IRepository<Passenger>, PassengerRepository>();
+builder.Services.AddScoped<IRepository<Ticket>, TicketRepository>();
 
 builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MapperProfile>());
 
@@ -30,10 +30,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.UseInlineDefinitionsForEnums();
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+    var basePath = AppContext.BaseDirectory;
+
+    var xmlApi = Path.Combine(basePath, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
+    c.IncludeXmlComments(xmlApi, includeControllerXmlComments: true);
+
+    var xmlApplication = Path.Combine(basePath, "Airline.Dtos.xml");
+    if (File.Exists(xmlApplication))
+    {
+        c.IncludeXmlComments(xmlApplication);
+    }
 });
 
 var app = builder.Build();

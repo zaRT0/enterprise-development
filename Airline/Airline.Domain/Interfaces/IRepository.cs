@@ -47,8 +47,4 @@ public interface IRepository<T> where T : class
     /// </summary>
     public Task DeleteAsync(int id);
 
-    /// <summary>
-    /// Persists all pending changes to the data store asynchronously.
-    /// </summary>
-    public Task SaveChangesAsync();
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Airline.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251126202119_InitialCreate")]
+    [Migration("20251203192402_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -215,7 +215,7 @@ namespace Airline.Infrastructure.Migrations
                     b.HasOne("Airline.Domain.Entities.AircraftFamily", "ModelFamily")
                         .WithMany()
                         .HasForeignKey("ModelFamilyId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("ModelFamily");
                 });
@@ -225,7 +225,7 @@ namespace Airline.Infrastructure.Migrations
                     b.HasOne("Airline.Domain.Entities.AircraftModel", "AircraftModel")
                         .WithMany()
                         .HasForeignKey("AircraftModelId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AircraftModel");
@@ -236,13 +236,13 @@ namespace Airline.Infrastructure.Migrations
                     b.HasOne("Airline.Domain.Entities.Flight", "Flight")
                         .WithMany()
                         .HasForeignKey("FlightId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Airline.Domain.Entities.Passenger", "Passenger")
                         .WithMany()
                         .HasForeignKey("PassengerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Flight");

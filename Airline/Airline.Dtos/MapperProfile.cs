@@ -1,4 +1,5 @@
 ﻿using Airline.Domain.Entities;
+using Airline.Dtos.AircraftFamilyDtos;
 using Airline.Dtos.AircraftModelDtos;
 using Airline.Dtos.FlightDtos;
 using Airline.Dtos.PassengerDtos;
@@ -29,5 +30,8 @@ public class MapperProfile : Profile
 
         CreateMap<AircraftModel, AircraftModelGetDto>();
         CreateMap<AircraftModelEditDto, AircraftModel>();
+
+        CreateMap<AircraftFamily, AircraftFamilyGetDto>();
+        CreateMap<AircraftModel, AircraftModelGetDto>();
     }
 }

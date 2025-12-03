@@ -41,7 +41,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        var dataFixture = new DataFixture();
+        var dataFixture = new DataSeeder();
 
         modelBuilder.Entity<AircraftFamily>(fam =>
         {
@@ -92,7 +92,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             mode.HasOne(am => am.ModelFamily)
                  .WithMany()
                  .HasForeignKey("ModelFamilyId")
-                 .OnDelete(DeleteBehavior.Restrict);
+                 .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Flight>(f =>
@@ -128,7 +128,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             f.HasOne(f => f.AircraftModel)
               .WithMany()
               .HasForeignKey("AircraftModelId")
-              .OnDelete(DeleteBehavior.Restrict);
+              .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Passenger>(pass =>
@@ -177,12 +177,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             tick.HasOne(tick => tick.Flight)
                  .WithMany()
                  .HasForeignKey("FlightId")
-                 .OnDelete(DeleteBehavior.Restrict);
+                 .OnDelete(DeleteBehavior.Cascade);
 
             tick.HasOne(tick => tick.Passenger)
                  .WithMany()
                  .HasForeignKey("PassengerId")
-                 .OnDelete(DeleteBehavior.Restrict);
+                 .OnDelete(DeleteBehavior.Cascade);
         });
     }
 }

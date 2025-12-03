@@ -7,7 +7,7 @@ namespace Airline.Tests;
 /// Uses the cref to provide consistent sample data for flights, passengers, and tickets.
 /// Each test checks a specific business rule or data aggregation relevant to airline management.
 /// </summary>
-public class AirlineTests(DataFixture fixture): IClassFixture<DataFixture>
+public class AirlineTests(DataSeeder fixture): IClassFixture<DataSeeder>
 {
     /// <summary>
     /// Validates that the top five flights are correctly identified based on the number of passengers.

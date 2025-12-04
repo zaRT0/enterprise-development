@@ -28,29 +28,27 @@ public class AnalyticsController(
     [ProducesResponseType(200)]
     public async Task<ActionResult<IEnumerable<FlightsByPassengerCountDto>>> GetTopFlightsByPassengerCount()
     {
-        var topFlights = await ticketRepo.Query()
+        var topFlights = (await ticketRepo.Query()
             .Include(t => t.Flight)
             .Where(t => t.Flight != null)
             .GroupBy(t => t.Flight!)
             .Select(g => new
-            {
-                Flight = g.Key,
-                PassengerCount = g.Count()
-            })
-            .OrderByDescending(x => x.PassengerCount)
-            .ThenBy(x => x.Flight.Code)
-            .Take(5)
-            .ToListAsync();
+        {
+            Flight = g.Key,
+            PassengerCount = g.Count()
+        })
+        .OrderByDescending(x => x.PassengerCount)
+        .ThenBy(x => x.Flight.Code)
+        .Take(5)
+        .ToListAsync())
+        .Select(x => new FlightsByPassengerCountDto
+        {
+            FlightDto = mapper.Map<FlightGetDto>(x.Flight),
+            PassengerCount = x.PassengerCount
+        })
+        .ToList();
 
-        var result = topFlights
-            .Select(x => new FlightsByPassengerCountDto
-            {
-                FlightDto = mapper.Map<FlightGetDto>(x.Flight),
-                PassengerCount = x.PassengerCount
-            })
-            .ToList();
-
-        return Ok(result);
+        return Ok(topFlights);  
     }
 
     /// <summary>
@@ -64,24 +62,23 @@ public class AnalyticsController(
     [FromQuery] DateTime start,
     [FromQuery] DateTime end)
     {
-        var flightsQuery = flightRepo.Query()
+        var flightsQuery = await flightRepo.Query()
             .Include(f => f.AircraftModel)
             .Where(f => f.AircraftModel.Id == modelId
                         && f.DepartureDateTime >= start
                         && f.DepartureDateTime <= end)
-            .OrderBy(f => f.DepartureDateTime);
+            .OrderBy(f => f.DepartureDateTime)
+            .ToListAsync();
 
-        var flights = await flightsQuery.ToListAsync();
-
-        if (!flights.Any())
+        if (flightsQuery.Count == 0)
             return NotFound($"No flights found for AircraftModel ID {modelId} in the given period.");
 
-        var model = flights.First().AircraftModel;
+        var model = flightsQuery.First().AircraftModel;
 
         var result = new ModelsFlightByPeriodDto
         {
             AircraftModelDto = mapper.Map<AircraftModelGetDto>(model),
-            FlightDtos = mapper.Map<List<FlightGetDto>>(flights)
+            FlightDtos = mapper.Map<List<FlightGetDto>>(flightsQuery)
         };
 
         return Ok(result);
@@ -99,7 +96,7 @@ public class AnalyticsController(
             .ThenBy(f => f.Code)
             .ToListAsync();
 
-        if (!minDurationFlights.Any())
+        if (minDurationFlights.Count == 0)
             return Ok(new List<FlightGetDto>());
 
         var minDurationSeconds = (minDurationFlights.First().ArrivalDateTime - minDurationFlights.First().DepartureDateTime).TotalSeconds;
@@ -117,14 +114,13 @@ public class AnalyticsController(
     /// </summary>
     [HttpGet("passengers-zero-baggage-by-code")]
     [ProducesResponseType(200)]
-    [ProducesResponseType(404)]
     public async Task<ActionResult<IEnumerable<PassengerGetDto>>> GetPassengersWithZeroBaggageByFlightCode(
      [FromQuery] string flightCode)
     {
         if (string.IsNullOrWhiteSpace(flightCode))
             return BadRequest("Flight code is required.");
 
-        var passengers = await ticketRepo.Query()
+        var passengers = (await ticketRepo.Query()
             .Where(t =>
                 t.Flight.Code == flightCode &&
                 (t.TotalBaggageWeight == null || t.TotalBaggageWeight == 0)
@@ -132,13 +128,10 @@ public class AnalyticsController(
             .Select(t => t.Passenger)
             .Distinct()
             .OrderBy(p => p.FullName)
-            .ToListAsync();
+            .ToListAsync())
+            .Select(mapper.Map<PassengerGetDto>);
 
-        if (passengers.Count == 0)
-            return NotFound($"No passengers with zero baggage found for flight {flightCode}.");
-
-        var result = mapper.Map<List<PassengerGetDto>>(passengers);
-        return Ok(result);
+        return Ok(passengers);
     }
 
     /// <summary>
@@ -150,13 +143,13 @@ public class AnalyticsController(
     [FromQuery] string departurePoint,
     [FromQuery] string arrivalPoint)
     {
-        var filteredFlights = await flightRepo.Query()
+        var filteredFlights = (await flightRepo.Query()
             .Where(f => f.DeparturePoint == departurePoint
                         && f.ArrivalPoint == arrivalPoint)
             .OrderBy(f => f.Code)
-            .ToListAsync();
+            .ToListAsync())
+            .Select(mapper.Map<FlightGetDto>);
 
-        var result = mapper.Map<List<FlightGetDto>>(filteredFlights);
-        return Ok(result);
+        return Ok(filteredFlights);
     }
 }

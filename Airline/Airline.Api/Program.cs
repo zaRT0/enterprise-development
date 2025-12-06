@@ -1,11 +1,13 @@
-using Airline.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
-using Airline.Dtos;
+using Airline.Api.Kafka;
 using Airline.Domain.Entities;
 using Airline.Domain.Interfaces;
+using Airline.Dtos;
+using Airline.Infrastructure.Persistence;
 using Airline.Infrastructure.Repositories;
-using System.Reflection;
 using Airline.ServiceDefaults;
+using Confluent.Kafka;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,24 @@ builder.Services.AddScoped<IRepository<Passenger>, PassengerRepository>();
 builder.Services.AddScoped<IRepository<Ticket>, TicketRepository>();
 
 builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MapperProfile>());
+
+var kafkaConnection = builder.Configuration["ConnectionStrings:KafkaConnection"]
+                      ?? builder.Configuration["Kafka:BootstrapServers"]
+                      ?? "localhost:9092";
+
+builder.Services.AddSingleton(sp =>
+{
+    var config = new ConsumerConfig
+    {
+        BootstrapServers = kafkaConnection,
+        GroupId = builder.Configuration["Kafka:ConsumerGroup"] ?? "airline-api-ticket-consumer",
+        AutoOffsetReset = AutoOffsetReset.Earliest,
+        EnableAutoCommit = false
+    };
+    return new ConsumerBuilder<Ignore, string>(config).Build();
+});
+
+builder.Services.AddHostedService<KafkaConsumer>();
 
 builder.Services.AddControllers();
 

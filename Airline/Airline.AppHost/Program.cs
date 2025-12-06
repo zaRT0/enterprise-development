@@ -7,4 +7,8 @@ builder.AddProject<Projects.Airline_Api>("AirlineAppAPI")
     .WithReference(mssqlDb, "DefaultConnection")
     .WaitFor(mssqlDb);
 
+builder.AddProject<Projects.Airline_Generator>("airline-generator");
+
+builder.AddProject<Projects.Airline_Gen>("airline-gen");
+
 builder.Build().Run();

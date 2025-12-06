@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11222.16 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline.Domain", "Airline.Domain\Airline.Domain.csproj", "{81059FF9-0E13-4189-B255-6CEB31815BD4}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline.AppHost", "Airline.AppHost\Airline.AppHost.csproj", "{3BD41354-D1C9-4B36-9D29-DB1A95297573}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline.ServiceDefaults", "Airline.ServiceDefaults\Airline.ServiceDefaults.csproj", "{2BA6BBCB-7758-4FEC-A28E-AC3ECF1973DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline.Generator", "Airline.Generator\Airline.Generator.csproj", "{DB8E684D-EFB1-2069-B197-6E5C205D6362}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,8 +53,15 @@ Global
 		{2BA6BBCB-7758-4FEC-A28E-AC3ECF1973DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BA6BBCB-7758-4FEC-A28E-AC3ECF1973DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BA6BBCB-7758-4FEC-A28E-AC3ECF1973DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB8E684D-EFB1-2069-B197-6E5C205D6362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB8E684D-EFB1-2069-B197-6E5C205D6362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB8E684D-EFB1-2069-B197-6E5C205D6362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB8E684D-EFB1-2069-B197-6E5C205D6362}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8DF4C0A3-5E0F-457C-9AB1-8F70C34DEEC4}
 	EndGlobalSection
 EndGlobal

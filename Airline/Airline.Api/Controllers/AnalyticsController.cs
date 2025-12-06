@@ -77,7 +77,7 @@ public class AnalyticsController(
 
         var result = new ModelsFlightByPeriodDto
         {
-            AircraftModelDto = mapper.Map<AircraftModelGetDto>(model),
+            AircraftModelDto = mapper.Map<AircraftModelGetDto>(flightsQuery),
             FlightDtos = mapper.Map<List<FlightGetDto>>(flightsQuery)
         };
 

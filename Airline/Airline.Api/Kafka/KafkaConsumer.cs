@@ -7,6 +7,10 @@ using System.Text.Json;
 
 namespace Airline.Api.Kafka;
 
+/// <summary>
+/// Background service responsible for consuming ticket event messages from Kafka,
+/// Deserializing them into DTO objects, and persisting them into the application's data store.
+/// </summary>
 public class KafkaConsumer(
     IConfiguration configuration,
     IConsumer<Ignore, string> consumer,
@@ -17,6 +21,11 @@ public class KafkaConsumer(
 {
     private readonly string _topic = configuration["KafkaTopic"] ?? "ticket-events";
 
+    /// <summary>
+    /// Main execution loop of the Kafka consumer.  
+    /// Subscribes to the configured topic, reads messages continuously, deserializes ticket DTOs, maps them to domain entities,
+    /// and saves them to the repository layer.
+    /// </summary>
     protected override async Task ExecuteAsync(CancellationToken stopToken)
     {
         consumer.Subscribe(_topic);

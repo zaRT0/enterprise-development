@@ -5,7 +5,7 @@ var producerIntervalMs = builder.AddParameter("KafkaProducerIntervalMs", "3000")
 var producerBatchSize = builder.AddParameter("KafkaProducerBatchSize", "2");
 var consumerGroup = builder.AddParameter("KafkaConsumerGroup", "airline-api-consumer");
 
-var mssql = builder.AddMySql("mysql");
+var mssql = builder.AddMySql("MySql");
 var mssqlDb = mssql.AddDatabase("AirlineDb");
 
 var kafka = builder.AddKafka("Kafka")
@@ -20,7 +20,7 @@ builder.AddProject<Projects.Airline_Api>("AirlineAppAPI")
        .WaitFor(kafka);
 
 
-builder.AddProject<Projects.Airline_Generator>("airline-generator")
+builder.AddProject<Projects.Airline_Generator>("AirlineGenerator")
        .WithReference(kafka, "KafkaConnection")
        .WithEnvironment("KafkaTopic", kafkaTopic)
        .WithEnvironment("KafkaProducerIntervalMs", producerIntervalMs)

@@ -3,6 +3,7 @@ using Airline.Domain.Interfaces;
 using Airline.Dtos.TicketDtos;
 using AutoMapper;
 using Confluent.Kafka;
+using Microsoft.Extensions.Options;
 using System.Text.Json;
 
 namespace Airline.Api.Kafka;
@@ -12,14 +13,19 @@ namespace Airline.Api.Kafka;
 /// Deserializing them into DTO objects, and persisting them into the application's data store.
 /// </summary>
 public class KafkaConsumer(
-    IConfiguration configuration,
+    IOptions<KafkaOptions> options,
     IConsumer<Ignore, string> consumer,
     IServiceScopeFactory serviceScopeFactory,
     IMapper mapper,
     ILogger<KafkaConsumer> logger
 ) : BackgroundService
 {
-    private readonly string _topic = configuration["KafkaTopic"] ?? "ticket-events";
+    private readonly KafkaOptions _options = options.Value;
+
+    private static readonly JsonSerializerOptions _jsonOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
 
     /// <summary>
     /// Main execution loop of the Kafka consumer.  
@@ -28,8 +34,10 @@ public class KafkaConsumer(
     /// </summary>
     protected override async Task ExecuteAsync(CancellationToken stopToken)
     {
-        consumer.Subscribe(_topic);
-        logger.LogInformation("KafkaConsumer is starting. Subscribing to topic: {Topic}", _topic);
+        consumer.Subscribe(_options.Topic);
+        logger.LogInformation("KafkaConsumer is starting. Subscribing to topic: {Topic}, ConsumerGroup: {ConsumerGroup}", 
+            _options.Topic, _options.ConsumerGroup);
+
         while (!stopToken.IsCancellationRequested)
         {
             try
@@ -46,8 +54,7 @@ public class KafkaConsumer(
                 logger.LogDebug("Processing message at {Offset}", offset);
 
                 var ticketDto = JsonSerializer.Deserialize<TicketEditDto>(
-                    consumeResult.Message.Value,
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    consumeResult.Message.Value, _jsonOptions);
 
                 if (ticketDto == null)
                 {

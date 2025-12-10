@@ -7,6 +7,7 @@ using Airline.Infrastructure.Repositories;
 using Airline.ServiceDefaults;
 using Confluent.Kafka;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,16 +28,24 @@ builder.Services.AddScoped<IRepository<Ticket>, TicketRepository>();
 
 builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MapperProfile>());
 
-var kafkaConnection = builder.Configuration["ConnectionStrings:KafkaConnection"]
-                      ?? builder.Configuration["Kafka:BootstrapServers"]
-                      ?? "localhost:9092";
+var kafkaConnection = builder.Configuration.GetConnectionString("KafkaConnection");
+
+if (string.IsNullOrWhiteSpace(kafkaConnection))
+{
+    throw new InvalidOperationException(
+        "Connection string 'KafkaConnection' is missing in 'ConnectionStrings'. "
+        );
+}
+
+builder.Services.Configure<KafkaOptions>(builder.Configuration.GetSection("Kafka"));
 
 builder.Services.AddSingleton(sp =>
 {
+    var options = sp.GetRequiredService<IOptions<KafkaOptions>>().Value;
     var config = new ConsumerConfig
     {
         BootstrapServers = kafkaConnection,
-        GroupId = builder.Configuration["Kafka:ConsumerGroup"] ?? "airline-api-ticket-consumer",
+        GroupId = options.ConsumerGroup,
         AutoOffsetReset = AutoOffsetReset.Earliest,
         EnableAutoCommit = false
     };

@@ -6,7 +6,14 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder.AddServiceDefaults();
 
-var kafkaConnection = builder.Configuration["ConnectionStrings:KafkaConnection"] ?? "localhost:9092";
+builder.Services.Configure<KafkaOptions>(builder.Configuration.GetSection("Kafka"));
+
+var kafkaConnection = builder.Configuration.GetConnectionString("KafkaConnection");
+if (string.IsNullOrWhiteSpace(kafkaConnection))
+{
+    throw new InvalidOperationException(
+        "Connection string 'KafkaConnection' is missing in configuration.");
+}
 
 builder.Services.AddSingleton(s =>
 {

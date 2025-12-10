@@ -99,6 +99,8 @@ app.UseSwaggerUI(c =>
 
 app.UseAuthorization();
 
+app.UseHttpsRedirection();
+
 app.MapControllers();
 
 app.Run();

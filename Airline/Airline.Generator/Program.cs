@@ -8,12 +8,8 @@ builder.AddServiceDefaults();
 
 builder.Services.Configure<KafkaOptions>(builder.Configuration.GetSection("Kafka"));
 
-var kafkaConnection = builder.Configuration.GetConnectionString("KafkaConnection");
-if (string.IsNullOrWhiteSpace(kafkaConnection))
-{
-    throw new InvalidOperationException(
+var kafkaConnection = builder.Configuration.GetConnectionString("KafkaConnection") ?? throw new InvalidOperationException(
         "Connection string 'KafkaConnection' is missing in configuration.");
-}
 
 builder.Services.AddSingleton(s =>
 {

@@ -28,14 +28,8 @@ builder.Services.AddScoped<IRepository<Ticket>, TicketRepository>();
 
 builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MapperProfile>());
 
-var kafkaConnection = builder.Configuration.GetConnectionString("KafkaConnection");
-
-if (string.IsNullOrWhiteSpace(kafkaConnection))
-{
-    throw new InvalidOperationException(
-        "Connection string 'KafkaConnection' is missing in 'ConnectionStrings'. "
-        );
-}
+var kafkaConnection = builder.Configuration.GetConnectionString("KafkaConnection") ??  throw new InvalidOperationException(
+        "Connection string 'KafkaConnection' is missing in 'ConnectionStrings'.");
 
 builder.Services.Configure<KafkaOptions>(builder.Configuration.GetSection("Kafka"));
 
